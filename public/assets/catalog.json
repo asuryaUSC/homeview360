@@ -1,0 +1,2231 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "generated": "2025-10-08T14:43:00.481961",
+    "collection": "CGT Furniture Collection",
+    "total_items": 56,
+    "formats": [
+      "GLB",
+      "USDZ"
+    ]
+  },
+  "statistics": {
+    "total_items": 56,
+    "by_category": {
+      "Accessory": 10,
+      "Armchair": 3,
+      "Artwork": 2,
+      "Barstool": 2,
+      "Bench": 2,
+      "Ceilinglight": 6,
+      "Chair": 3,
+      "Coffee Table": 6,
+      "Floorlamp": 3,
+      "Side Table": 5,
+      "Sofa": 1,
+      "Table": 5,
+      "Table Lamp": 5,
+      "Walllight": 3
+    },
+    "by_type": {
+      "decor": 12,
+      "lighting": 14,
+      "other": 3,
+      "seating": 11,
+      "tables": 16
+    },
+    "price_range": {
+      "min": 59,
+      "max": 1799
+    }
+  },
+  "items": [
+    {
+      "id": "accessory_106",
+      "sku": "CGT-A106",
+      "name": "Accessory Model 106",
+      "category": "Accessory",
+      "type": "decor",
+      "description": "This decorative accessory adds personality and style to any space. Carefully designed to complement modern interiors with attention to detail and quality. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 89,
+      "dimensions": {
+        "width": 0.19,
+        "height": 0.088,
+        "depth": 0.264,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/cgt_Accessory_106_001.glb",
+        "glb_size_mb": 0.25,
+        "usdz": "assets/usdz/cgt_Accessory_106_001.usdz",
+        "usdz_size_mb": 0.39,
+        "vertices": 5420,
+        "faces": 4712
+      },
+      "thumbnail": "assets/thumbnails/accessory_106.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "accessory",
+        "decor",
+        "decorative",
+        "designer",
+        "home decor",
+        "premium",
+        "styling"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "accessory_120",
+      "sku": "CGT-A120",
+      "name": "Accessory Model 120",
+      "category": "Accessory",
+      "type": "decor",
+      "description": "This decorative accessory adds personality and style to any space. Carefully designed to complement modern interiors with attention to detail and quality. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 59,
+      "dimensions": {
+        "width": 0.235,
+        "height": 0.206,
+        "depth": 0.068,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/cgt_Accessory_120_001.glb",
+        "glb_size_mb": 0.34,
+        "usdz": "assets/usdz/cgt_Accessory_120_001.usdz",
+        "usdz_size_mb": 0.38,
+        "vertices": 720,
+        "faces": 1080
+      },
+      "thumbnail": "assets/thumbnails/accessory_120.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "accessory",
+        "decor",
+        "decorative",
+        "designer",
+        "home decor",
+        "premium",
+        "styling"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "accessory_150",
+      "sku": "CGT-A150",
+      "name": "Accessory Model 150",
+      "category": "Accessory",
+      "type": "decor",
+      "description": "This decorative accessory adds personality and style to any space. Carefully designed to complement modern interiors with attention to detail and quality. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 79,
+      "dimensions": {
+        "width": 0.292,
+        "height": 0.157,
+        "depth": 0.164,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/cgt_Accessory_150_001.glb",
+        "glb_size_mb": 0.32,
+        "usdz": "assets/usdz/cgt_Accessory_150_001.usdz",
+        "usdz_size_mb": 0.7,
+        "vertices": 9995,
+        "faces": 15260
+      },
+      "thumbnail": "assets/thumbnails/accessory_150.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "accessory",
+        "decor",
+        "decorative",
+        "designer",
+        "home decor",
+        "premium",
+        "styling"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "accessory_17",
+      "sku": "CGT-A17",
+      "name": "Accessory Model 17",
+      "category": "Accessory",
+      "type": "decor",
+      "description": "This decorative accessory adds personality and style to any space. Carefully designed to complement modern interiors with attention to detail and quality. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 89,
+      "dimensions": {
+        "width": 0.313,
+        "height": 0.25,
+        "depth": 0.104,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/cgt_Accessory_17_001.glb",
+        "glb_size_mb": 0.02,
+        "usdz": "assets/usdz/cgt_Accessory_17_001.usdz",
+        "usdz_size_mb": 0.03,
+        "vertices": 534,
+        "faces": 272
+      },
+      "thumbnail": "assets/thumbnails/accessory_17.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "accessory",
+        "contemporary",
+        "decor",
+        "decorative",
+        "home decor",
+        "modern",
+        "styling"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "accessory_2",
+      "sku": "CGT-A2",
+      "name": "Accessory Model 2",
+      "category": "Accessory",
+      "type": "decor",
+      "description": "This decorative accessory adds personality and style to any space. Carefully designed to complement modern interiors with attention to detail and quality. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 89,
+      "dimensions": {
+        "width": 0.155,
+        "height": 0.191,
+        "depth": 0.144,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/cgt_Accessory_2_001.glb",
+        "glb_size_mb": 0.47,
+        "usdz": "assets/usdz/cgt_Accessory_2_001.usdz",
+        "usdz_size_mb": 0.49,
+        "vertices": 805,
+        "faces": 696
+      },
+      "thumbnail": "assets/thumbnails/accessory_2.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "accessory",
+        "contemporary",
+        "decor",
+        "decorative",
+        "home decor",
+        "modern",
+        "styling"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "accessory_30",
+      "sku": "CGT-A30",
+      "name": "Accessory Model 30",
+      "category": "Accessory",
+      "type": "decor",
+      "description": "This decorative accessory adds personality and style to any space. Carefully designed to complement modern interiors with attention to detail and quality. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 199,
+      "dimensions": {
+        "width": 0.247,
+        "height": 0.146,
+        "depth": 0.166,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/cgt_Accessory_30_001.glb",
+        "glb_size_mb": 1.71,
+        "usdz": "assets/usdz/cgt_Accessory_30_001.usdz",
+        "usdz_size_mb": 1.72,
+        "vertices": 1256,
+        "faces": 614
+      },
+      "thumbnail": "assets/thumbnails/accessory_30.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "accessory",
+        "decor",
+        "decorative",
+        "home decor",
+        "minimalist",
+        "sleek",
+        "styling"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "accessory_44",
+      "sku": "CGT-A44",
+      "name": "Accessory Model 44",
+      "category": "Accessory",
+      "type": "decor",
+      "description": "This decorative accessory adds personality and style to any space. Carefully designed to complement modern interiors with attention to detail and quality. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 249,
+      "dimensions": {
+        "width": 0.281,
+        "height": 0.205,
+        "depth": 0.192,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/cgt_Accessory_44_001.glb",
+        "glb_size_mb": 0.06,
+        "usdz": "assets/usdz/cgt_Accessory_44_001.usdz",
+        "usdz_size_mb": 0.12,
+        "vertices": 2080,
+        "faces": 2496
+      },
+      "thumbnail": "assets/thumbnails/accessory_44.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "accessory",
+        "decor",
+        "decorative",
+        "home decor",
+        "minimalist",
+        "sleek",
+        "styling"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "accessory_53",
+      "sku": "CGT-A53",
+      "name": "Accessory Model 53",
+      "category": "Accessory",
+      "type": "decor",
+      "description": "This decorative accessory adds personality and style to any space. Carefully designed to complement modern interiors with attention to detail and quality. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 149,
+      "dimensions": {
+        "width": 0.35,
+        "height": 0.38,
+        "depth": 0.388,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/cgt_Accessory_53_001.glb",
+        "glb_size_mb": 0.11,
+        "usdz": "assets/usdz/cgt_Accessory_53_001.usdz",
+        "usdz_size_mb": 0.22,
+        "vertices": 3478,
+        "faces": 4976
+      },
+      "thumbnail": "assets/thumbnails/accessory_53.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "accessory",
+        "decor",
+        "decorative",
+        "home decor",
+        "minimalist",
+        "sleek",
+        "styling"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "accessory_81",
+      "sku": "CGT-A81",
+      "name": "Accessory Model 81",
+      "category": "Accessory",
+      "type": "decor",
+      "description": "This decorative accessory adds personality and style to any space. Carefully designed to complement modern interiors with attention to detail and quality. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 199,
+      "dimensions": {
+        "width": 0.564,
+        "height": 0.507,
+        "depth": 0.125,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/cgt_Accessory_81_001.glb",
+        "glb_size_mb": 0.58,
+        "usdz": "assets/usdz/cgt_Accessory_81_001.usdz",
+        "usdz_size_mb": 0.61,
+        "vertices": 992,
+        "faces": 920
+      },
+      "thumbnail": "assets/thumbnails/accessory_81.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "accessory",
+        "decor",
+        "decorative",
+        "designer",
+        "home decor",
+        "premium",
+        "styling"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "accessory_91",
+      "sku": "CGT-A91",
+      "name": "Accessory Model 91",
+      "category": "Accessory",
+      "type": "decor",
+      "description": "This decorative accessory adds personality and style to any space. Carefully designed to complement modern interiors with attention to detail and quality. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 59,
+      "dimensions": {
+        "width": 0.437,
+        "height": 0.255,
+        "depth": 0.307,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/cgt_Accessory_91_001.glb",
+        "glb_size_mb": 0.02,
+        "usdz": "assets/usdz/cgt_Accessory_91_001.usdz",
+        "usdz_size_mb": 0.04,
+        "vertices": 672,
+        "faces": 528
+      },
+      "thumbnail": "assets/thumbnails/accessory_91.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "accessory",
+        "decor",
+        "decorative",
+        "designer",
+        "home decor",
+        "premium",
+        "styling"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "armchair_019",
+      "sku": "CGT-A019",
+      "name": "Luxe Armchair - Model 019",
+      "category": "Armchair",
+      "type": "seating",
+      "description": "Measuring 72cm W \u00d7 87cm H \u00d7 74cm D, this armchair combines ergonomic design with sophisticated styling. Features premium upholstery and supportive cushioning for maximum comfort. Perfect for living rooms, reading nooks, or office spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 1099,
+      "dimensions": {
+        "width": 0.724,
+        "height": 0.871,
+        "depth": 0.737,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Armchair_019.glb",
+        "glb_size_mb": 3.46,
+        "usdz": "assets/usdz/CGT_Armchair_019.usdz",
+        "usdz_size_mb": 4.44,
+        "vertices": 12846,
+        "faces": 16820
+      },
+      "thumbnail": "assets/thumbnails/armchair_019.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "armchair",
+        "comfort",
+        "contemporary",
+        "fabric",
+        "lounge",
+        "modern",
+        "relaxation",
+        "seating",
+        "upholstered"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "armchair_046",
+      "sku": "CGT-A046",
+      "name": "Modern Armchair - Model 046",
+      "category": "Armchair",
+      "type": "seating",
+      "description": "Measuring 63cm W \u00d7 92cm H \u00d7 60cm D, this armchair combines ergonomic design with sophisticated styling. Features premium upholstery and supportive cushioning for maximum comfort. Perfect for living rooms, reading nooks, or office spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 999,
+      "dimensions": {
+        "width": 0.631,
+        "height": 0.921,
+        "depth": 0.6,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Armchair_046.glb",
+        "glb_size_mb": 0.88,
+        "usdz": "assets/usdz/CGT_Armchair_046.usdz",
+        "usdz_size_mb": 1.02,
+        "vertices": 2050,
+        "faces": 2440
+      },
+      "thumbnail": "assets/thumbnails/armchair_046.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "armchair",
+        "comfort",
+        "fabric",
+        "lounge",
+        "minimalist",
+        "relaxation",
+        "seating",
+        "sleek",
+        "upholstered"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "armchair_075",
+      "sku": "CGT-A075",
+      "name": "Contemporary Armchair - Model 075",
+      "category": "Armchair",
+      "type": "seating",
+      "description": "Measuring 66cm W \u00d7 89cm H \u00d7 80cm D, this armchair combines ergonomic design with sophisticated styling. Features premium upholstery and supportive cushioning for maximum comfort. Perfect for living rooms, reading nooks, or office spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 899,
+      "dimensions": {
+        "width": 0.655,
+        "height": 0.887,
+        "depth": 0.802,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Armchair_075.glb",
+        "glb_size_mb": 1.54,
+        "usdz": "assets/usdz/CGT_Armchair_075.usdz",
+        "usdz_size_mb": 1.7,
+        "vertices": 3298,
+        "faces": 4062
+      },
+      "thumbnail": "assets/thumbnails/armchair_075.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "armchair",
+        "comfort",
+        "designer",
+        "fabric",
+        "lounge",
+        "premium",
+        "relaxation",
+        "seating",
+        "upholstered"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "artwork_19",
+      "sku": "CGT-A19",
+      "name": "Artwork Model 19",
+      "category": "Artwork",
+      "type": "decor",
+      "description": "Measuring 175cm W \u00d7 218cm H \u00d7 13cm D, this artwork piece brings visual interest and sophistication to your walls. A statement piece that elevates any interior design scheme. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 599,
+      "dimensions": {
+        "width": 1.75,
+        "height": 2.183,
+        "depth": 0.13,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Artwork_19_01.glb",
+        "glb_size_mb": 3.35,
+        "usdz": "assets/usdz/CGT_Artwork_19_01.usdz",
+        "usdz_size_mb": 3.88,
+        "vertices": 91160,
+        "faces": 49392
+      },
+      "thumbnail": "assets/thumbnails/artwork_19.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "artwork",
+        "canvas",
+        "contemporary",
+        "decor",
+        "framed",
+        "modern",
+        "statement piece",
+        "wall art"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "artwork_44",
+      "sku": "CGT-A44",
+      "name": "Artwork Model 44",
+      "category": "Artwork",
+      "type": "decor",
+      "description": "Measuring 153cm W \u00d7 120cm H \u00d7 4cm D, this artwork piece brings visual interest and sophistication to your walls. A statement piece that elevates any interior design scheme. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 299,
+      "dimensions": {
+        "width": 1.526,
+        "height": 1.195,
+        "depth": 0.044,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Artwork_44_01.glb",
+        "glb_size_mb": 0.02,
+        "usdz": "assets/usdz/CGT_Artwork_44_01.usdz",
+        "usdz_size_mb": 0.03,
+        "vertices": 340,
+        "faces": 344
+      },
+      "thumbnail": "assets/thumbnails/artwork_44.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "artwork",
+        "canvas",
+        "decor",
+        "framed",
+        "minimalist",
+        "sleek",
+        "statement piece",
+        "wall art"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "barstool_010",
+      "sku": "CGT-B010",
+      "name": "Barstool Model 010",
+      "category": "Barstool",
+      "type": "seating",
+      "description": "Measuring 45cm W \u00d7 71cm H \u00d7 43cm D, A quality barstool piece designed for modern living spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 349,
+      "dimensions": {
+        "width": 0.452,
+        "height": 0.706,
+        "depth": 0.434,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Barstool_010.glb",
+        "glb_size_mb": 0.75,
+        "usdz": "assets/usdz/CGT_Barstool_010.usdz",
+        "usdz_size_mb": 0.87,
+        "vertices": 2218,
+        "faces": 2360
+      },
+      "thumbnail": "assets/thumbnails/barstool_010.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "bar",
+        "barstool",
+        "contemporary",
+        "counter height",
+        "kitchen",
+        "modern",
+        "seating"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "barstool_018",
+      "sku": "CGT-B018",
+      "name": "Barstool Model 018",
+      "category": "Barstool",
+      "type": "seating",
+      "description": "Measuring 44cm W \u00d7 100cm H \u00d7 46cm D, A quality barstool piece designed for modern living spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 349,
+      "dimensions": {
+        "width": 0.442,
+        "height": 0.996,
+        "depth": 0.463,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Barstool_018.glb",
+        "glb_size_mb": 1.04,
+        "usdz": "assets/usdz/CGT_Barstool_018.usdz",
+        "usdz_size_mb": 1.13,
+        "vertices": 1565,
+        "faces": 1653
+      },
+      "thumbnail": "assets/thumbnails/barstool_018.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "bar",
+        "barstool",
+        "contemporary",
+        "counter height",
+        "kitchen",
+        "modern",
+        "seating"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "bench_17",
+      "sku": "CGT-B17",
+      "name": "Bench Model 17",
+      "category": "Bench",
+      "type": "seating",
+      "description": "Measuring 146cm W \u00d7 51cm H \u00d7 57cm D, A quality bench piece designed for modern living spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 549,
+      "dimensions": {
+        "width": 1.461,
+        "height": 0.511,
+        "depth": 0.573,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Bench_17_001.glb",
+        "glb_size_mb": 0.78,
+        "usdz": "assets/usdz/CGT_Bench_17_001.usdz",
+        "usdz_size_mb": 1.17,
+        "vertices": 6866,
+        "faces": 9538
+      },
+      "thumbnail": "assets/thumbnails/bench_17.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "bench",
+        "contemporary",
+        "dining",
+        "entryway",
+        "fabric",
+        "modern",
+        "seating",
+        "storage",
+        "upholstered",
+        "versatile"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "bench_28",
+      "sku": "CGT-B28",
+      "name": "Bench Model 28",
+      "category": "Bench",
+      "type": "seating",
+      "description": "Measuring 145cm W \u00d7 43cm H \u00d7 52cm D, A quality bench piece designed for modern living spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 449,
+      "dimensions": {
+        "width": 1.447,
+        "height": 0.427,
+        "depth": 0.525,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Bench_28_001.glb",
+        "glb_size_mb": 6.17,
+        "usdz": "assets/usdz/CGT_Bench_28_001.usdz",
+        "usdz_size_mb": 6.19,
+        "vertices": 798,
+        "faces": 608
+      },
+      "thumbnail": "assets/thumbnails/bench_28.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "bench",
+        "contemporary",
+        "dining",
+        "entryway",
+        "fabric",
+        "modern",
+        "seating",
+        "storage",
+        "upholstered",
+        "versatile"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "ceilinglight_007",
+      "sku": "CGT-C007",
+      "name": "Ceilinglight Model 007",
+      "category": "Ceilinglight",
+      "type": "lighting",
+      "description": "Measuring 124cm W \u00d7 167cm H \u00d7 156cm D, this ceiling fixture provides overhead illumination with modern aesthetics. Designed to be a focal point while delivering practical lighting. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 699,
+      "dimensions": {
+        "width": 1.241,
+        "height": 1.671,
+        "depth": 1.561,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_CeilingLight_007.glb",
+        "glb_size_mb": 0.29,
+        "usdz": "assets/usdz/CGT_CeilingLight_007.usdz",
+        "usdz_size_mb": 0.49,
+        "vertices": 4756,
+        "faces": 5516
+      },
+      "thumbnail": "assets/thumbnails/ceilinglight_007.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "ceilinglight",
+        "chandelier",
+        "contemporary",
+        "illumination",
+        "lighting",
+        "modern",
+        "overhead",
+        "pendant",
+        "statement piece"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "ceilinglight_013",
+      "sku": "CGT-C013",
+      "name": "Ceilinglight Model 013",
+      "category": "Ceilinglight",
+      "type": "lighting",
+      "description": "Measuring 87cm W \u00d7 70cm H \u00d7 87cm D, this ceiling fixture provides overhead illumination with modern aesthetics. Designed to be a focal point while delivering practical lighting. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 299,
+      "dimensions": {
+        "width": 0.873,
+        "height": 0.696,
+        "depth": 0.873,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_CeilingLight_013.glb",
+        "glb_size_mb": 0.42,
+        "usdz": "assets/usdz/CGT_CeilingLight_013.usdz",
+        "usdz_size_mb": 0.92,
+        "vertices": 11198,
+        "faces": 13676
+      },
+      "thumbnail": "assets/thumbnails/ceilinglight_013.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "ceilinglight",
+        "chandelier",
+        "contemporary",
+        "illumination",
+        "lighting",
+        "modern",
+        "overhead",
+        "pendant",
+        "statement piece"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "ceilinglight_052",
+      "sku": "CGT-C052",
+      "name": "Ceilinglight Model 052",
+      "category": "Ceilinglight",
+      "type": "lighting",
+      "description": "Measuring 68cm W \u00d7 180cm H \u00d7 67cm D, this ceiling fixture provides overhead illumination with modern aesthetics. Designed to be a focal point while delivering practical lighting. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 649,
+      "dimensions": {
+        "width": 0.675,
+        "height": 1.795,
+        "depth": 0.674,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_CeilingLight_052.glb",
+        "glb_size_mb": 0.12,
+        "usdz": "assets/usdz/CGT_CeilingLight_052.usdz",
+        "usdz_size_mb": 0.24,
+        "vertices": 3298,
+        "faces": 3416
+      },
+      "thumbnail": "assets/thumbnails/ceilinglight_052.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "ceilinglight",
+        "chandelier",
+        "illumination",
+        "lighting",
+        "minimalist",
+        "overhead",
+        "pendant",
+        "sleek",
+        "statement piece"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "ceilinglight_057",
+      "sku": "CGT-C057",
+      "name": "Ceilinglight Model 057",
+      "category": "Ceilinglight",
+      "type": "lighting",
+      "description": "Measuring 31cm W \u00d7 154cm H \u00d7 33cm D, this ceiling fixture provides overhead illumination with modern aesthetics. Designed to be a focal point while delivering practical lighting. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 649,
+      "dimensions": {
+        "width": 0.31,
+        "height": 1.538,
+        "depth": 0.333,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_CeilingLight_057.glb",
+        "glb_size_mb": 0.04,
+        "usdz": "assets/usdz/CGT_CeilingLight_057.usdz",
+        "usdz_size_mb": 0.07,
+        "vertices": 1038,
+        "faces": 858
+      },
+      "thumbnail": "assets/thumbnails/ceilinglight_057.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "ceilinglight",
+        "chandelier",
+        "illumination",
+        "lighting",
+        "minimalist",
+        "overhead",
+        "pendant",
+        "sleek",
+        "statement piece"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "ceilinglight_061",
+      "sku": "CGT-C061",
+      "name": "Ceilinglight Model 061",
+      "category": "Ceilinglight",
+      "type": "lighting",
+      "description": "Measuring 27cm W \u00d7 159cm H \u00d7 41cm D, this ceiling fixture provides overhead illumination with modern aesthetics. Designed to be a focal point while delivering practical lighting. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 849,
+      "dimensions": {
+        "width": 0.268,
+        "height": 1.593,
+        "depth": 0.41,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_CeilingLight_061.glb",
+        "glb_size_mb": 0.74,
+        "usdz": "assets/usdz/CGT_CeilingLight_061.usdz",
+        "usdz_size_mb": 1.13,
+        "vertices": 9262,
+        "faces": 8512
+      },
+      "thumbnail": "assets/thumbnails/ceilinglight_061.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "ceilinglight",
+        "chandelier",
+        "designer",
+        "illumination",
+        "lighting",
+        "overhead",
+        "pendant",
+        "premium",
+        "statement piece"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "ceilinglight_063",
+      "sku": "CGT-C063",
+      "name": "Ceilinglight Model 063",
+      "category": "Ceilinglight",
+      "type": "lighting",
+      "description": "Measuring 15cm W \u00d7 212cm H \u00d7 30cm D, this ceiling fixture provides overhead illumination with modern aesthetics. Designed to be a focal point while delivering practical lighting. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 899,
+      "dimensions": {
+        "width": 0.152,
+        "height": 2.115,
+        "depth": 0.298,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_CeilingLight_063.glb",
+        "glb_size_mb": 0.07,
+        "usdz": "assets/usdz/CGT_CeilingLight_063.usdz",
+        "usdz_size_mb": 0.12,
+        "vertices": 2201,
+        "faces": 2624
+      },
+      "thumbnail": "assets/thumbnails/ceilinglight_063.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "ceilinglight",
+        "chandelier",
+        "designer",
+        "illumination",
+        "lighting",
+        "overhead",
+        "pendant",
+        "premium",
+        "statement piece"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "chair_002",
+      "sku": "CGT-C002",
+      "name": "Dining Chair - Model 002",
+      "category": "Chair",
+      "type": "seating",
+      "description": "Measuring 48cm W \u00d7 82cm H \u00d7 48cm D, this versatile chair offers both style and functionality. Designed with clean lines and durable construction, it's ideal for dining rooms, workspaces, or as an elegant accent piece. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 599,
+      "dimensions": {
+        "width": 0.483,
+        "height": 0.825,
+        "depth": 0.477,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Chair_002.glb",
+        "glb_size_mb": 1.44,
+        "usdz": "assets/usdz/CGT_Chair_002.usdz",
+        "usdz_size_mb": 1.56,
+        "vertices": 1896,
+        "faces": 2122
+      },
+      "thumbnail": "assets/thumbnails/chair_002.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "chair",
+        "contemporary",
+        "dining",
+        "fabric",
+        "modern",
+        "seating",
+        "upholstered",
+        "versatile"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "chair_009",
+      "sku": "CGT-C009",
+      "name": "Dining Chair - Model 009",
+      "category": "Chair",
+      "type": "seating",
+      "description": "Measuring 43cm W \u00d7 79cm H \u00d7 49cm D, this versatile chair offers both style and functionality. Designed with clean lines and durable construction, it's ideal for dining rooms, workspaces, or as an elegant accent piece. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 499,
+      "dimensions": {
+        "width": 0.432,
+        "height": 0.786,
+        "depth": 0.489,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Chair_009.glb",
+        "glb_size_mb": 0.61,
+        "usdz": "assets/usdz/CGT_Chair_009.usdz",
+        "usdz_size_mb": 0.75,
+        "vertices": 2835,
+        "faces": 2688
+      },
+      "thumbnail": "assets/thumbnails/chair_009.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "chair",
+        "contemporary",
+        "dining",
+        "fabric",
+        "modern",
+        "seating",
+        "upholstered",
+        "versatile"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "chair_015",
+      "sku": "CGT-C015",
+      "name": "Dining Chair - Model 015",
+      "category": "Chair",
+      "type": "seating",
+      "description": "Measuring 47cm W \u00d7 87cm H \u00d7 51cm D, this versatile chair offers both style and functionality. Designed with clean lines and durable construction, it's ideal for dining rooms, workspaces, or as an elegant accent piece. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 349,
+      "dimensions": {
+        "width": 0.466,
+        "height": 0.866,
+        "depth": 0.51,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Chair_015.glb",
+        "glb_size_mb": 0.8,
+        "usdz": "assets/usdz/CGT_Chair_015.usdz",
+        "usdz_size_mb": 0.97,
+        "vertices": 2121,
+        "faces": 2836
+      },
+      "thumbnail": "assets/thumbnails/chair_015.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "chair",
+        "contemporary",
+        "dining",
+        "fabric",
+        "modern",
+        "seating",
+        "upholstered",
+        "versatile"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "coffee_table_002",
+      "sku": "CGT-CT002",
+      "name": "Modern Coffee Table - Model 002",
+      "category": "Coffee Table",
+      "type": "tables",
+      "description": "Measuring 91cm W \u00d7 42cm H \u00d7 83cm D, this coffee table serves as both a functional surface and a design statement. Perfect for living rooms, it provides ample space while maintaining a sleek profile. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 549,
+      "dimensions": {
+        "width": 0.907,
+        "height": 0.415,
+        "depth": 0.83,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_coffee_table_002.glb",
+        "glb_size_mb": 0.18,
+        "usdz": "assets/usdz/CGT_coffee_table_002.usdz",
+        "usdz_size_mb": 0.43,
+        "vertices": 4536,
+        "faces": 6396
+      },
+      "thumbnail": "assets/thumbnails/coffee_table_002.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "center piece",
+        "coffee table",
+        "contemporary",
+        "living room",
+        "modern",
+        "solid construction",
+        "storage",
+        "tables",
+        "wood"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "coffee_table_16",
+      "sku": "CGT-CT16",
+      "name": "Modern Coffee Table - Model 16",
+      "category": "Coffee Table",
+      "type": "tables",
+      "description": "Measuring 158cm W \u00d7 32cm H \u00d7 65cm D, this coffee table serves as both a functional surface and a design statement. Perfect for living rooms, it provides ample space while maintaining a sleek profile. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 599,
+      "dimensions": {
+        "width": 1.577,
+        "height": 0.324,
+        "depth": 0.647,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Coffee-Table_16.glb",
+        "glb_size_mb": 0.21,
+        "usdz": "assets/usdz/CGT_Coffee-Table_16.usdz",
+        "usdz_size_mb": 0.36,
+        "vertices": 5792,
+        "faces": 4908
+      },
+      "thumbnail": "assets/thumbnails/coffee_table_16.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "center piece",
+        "coffee table",
+        "contemporary",
+        "living room",
+        "modern",
+        "solid construction",
+        "storage",
+        "tables",
+        "wood"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "coffee_table_32",
+      "sku": "CGT-CT32",
+      "name": "Contemporary Coffee Table - Model 32",
+      "category": "Coffee Table",
+      "type": "tables",
+      "description": "Measuring 112cm W \u00d7 56cm H \u00d7 102cm D, this coffee table serves as both a functional surface and a design statement. Perfect for living rooms, it provides ample space while maintaining a sleek profile. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 599,
+      "dimensions": {
+        "width": 1.117,
+        "height": 0.563,
+        "depth": 1.018,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Coffee-Table_32.glb",
+        "glb_size_mb": 0.11,
+        "usdz": "assets/usdz/CGT_Coffee-Table_32.usdz",
+        "usdz_size_mb": 0.16,
+        "vertices": 3088,
+        "faces": 2128
+      },
+      "thumbnail": "assets/thumbnails/coffee_table_32.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "center piece",
+        "coffee table",
+        "living room",
+        "minimalist",
+        "modern",
+        "sleek",
+        "solid construction",
+        "storage",
+        "tables",
+        "wood"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "coffee_table_49",
+      "sku": "CGT-CT49",
+      "name": "Contemporary Coffee Table - Model 49",
+      "category": "Coffee Table",
+      "type": "tables",
+      "description": "Measuring 126cm W \u00d7 38cm H \u00d7 113cm D, this coffee table serves as both a functional surface and a design statement. Perfect for living rooms, it provides ample space while maintaining a sleek profile. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 949,
+      "dimensions": {
+        "width": 1.262,
+        "height": 0.377,
+        "depth": 1.131,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Coffee-Table_49.glb",
+        "glb_size_mb": 0.01,
+        "usdz": "assets/usdz/CGT_Coffee-Table_49.usdz",
+        "usdz_size_mb": 0.01,
+        "vertices": 180,
+        "faces": 140
+      },
+      "thumbnail": "assets/thumbnails/coffee_table_49.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "center piece",
+        "coffee table",
+        "living room",
+        "minimalist",
+        "modern",
+        "sleek",
+        "solid construction",
+        "storage",
+        "tables",
+        "wood"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "coffee_table_61",
+      "sku": "CGT-CT61",
+      "name": "Minimalist Coffee Table - Model 61",
+      "category": "Coffee Table",
+      "type": "tables",
+      "description": "Measuring 128cm W \u00d7 38cm H \u00d7 101cm D, this coffee table serves as both a functional surface and a design statement. Perfect for living rooms, it provides ample space while maintaining a sleek profile. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 549,
+      "dimensions": {
+        "width": 1.281,
+        "height": 0.381,
+        "depth": 1.013,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Coffee-Table_61.glb",
+        "glb_size_mb": 0.13,
+        "usdz": "assets/usdz/CGT_Coffee-Table_61.usdz",
+        "usdz_size_mb": 0.24,
+        "vertices": 3420,
+        "faces": 3376
+      },
+      "thumbnail": "assets/thumbnails/coffee_table_61.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "center piece",
+        "coffee table",
+        "designer",
+        "living room",
+        "modern",
+        "premium",
+        "solid construction",
+        "storage",
+        "tables",
+        "wood"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "coffee_table_88",
+      "sku": "CGT-CT88",
+      "name": "Designer Coffee Table - Model 88",
+      "category": "Coffee Table",
+      "type": "tables",
+      "description": "Measuring 127cm W \u00d7 26cm H \u00d7 80cm D, this coffee table serves as both a functional surface and a design statement. Perfect for living rooms, it provides ample space while maintaining a sleek profile. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 399,
+      "dimensions": {
+        "width": 1.27,
+        "height": 0.262,
+        "depth": 0.8,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Coffee-Table_88.glb",
+        "glb_size_mb": 0.04,
+        "usdz": "assets/usdz/CGT_Coffee-Table_88.usdz",
+        "usdz_size_mb": 0.11,
+        "vertices": 1006,
+        "faces": 1603
+      },
+      "thumbnail": "assets/thumbnails/coffee_table_88.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "center piece",
+        "coffee table",
+        "designer",
+        "living room",
+        "modern",
+        "premium",
+        "solid construction",
+        "storage",
+        "tables",
+        "wood"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "floorlamp_009",
+      "sku": "CGT-F009",
+      "name": "Floorlamp Model 009",
+      "category": "Floorlamp",
+      "type": "lighting",
+      "description": "Measuring 78cm W \u00d7 205cm H \u00d7 78cm D, this floor lamp provides excellent ambient lighting while serving as a sculptural design element. Compatible with LED bulbs for energy efficiency. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 549,
+      "dimensions": {
+        "width": 0.782,
+        "height": 2.049,
+        "depth": 0.782,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_FloorLamp_009.glb",
+        "glb_size_mb": 1.0,
+        "usdz": "assets/usdz/CGT_FloorLamp_009.usdz",
+        "usdz_size_mb": 1.07,
+        "vertices": 1621,
+        "faces": 1444
+      },
+      "thumbnail": "assets/thumbnails/floorlamp_009.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "adjustable",
+        "ambient",
+        "contemporary",
+        "floorlamp",
+        "illumination",
+        "lighting",
+        "modern",
+        "reading"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "floorlamp_013",
+      "sku": "CGT-F013",
+      "name": "Floorlamp Model 013",
+      "category": "Floorlamp",
+      "type": "lighting",
+      "description": "Measuring 38cm W \u00d7 129cm H \u00d7 38cm D, this floor lamp provides excellent ambient lighting while serving as a sculptural design element. Compatible with LED bulbs for energy efficiency. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 399,
+      "dimensions": {
+        "width": 0.385,
+        "height": 1.288,
+        "depth": 0.385,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_FloorLamp_013.glb",
+        "glb_size_mb": 1.56,
+        "usdz": "assets/usdz/CGT_FloorLamp_013.usdz",
+        "usdz_size_mb": 1.67,
+        "vertices": 3325,
+        "faces": 2562
+      },
+      "thumbnail": "assets/thumbnails/floorlamp_013.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "adjustable",
+        "ambient",
+        "contemporary",
+        "floorlamp",
+        "illumination",
+        "lighting",
+        "modern",
+        "reading"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "floorlamp_029",
+      "sku": "CGT-F029",
+      "name": "Floorlamp Model 029",
+      "category": "Floorlamp",
+      "type": "lighting",
+      "description": "Measuring 94cm W \u00d7 160cm H \u00d7 69cm D, this floor lamp provides excellent ambient lighting while serving as a sculptural design element. Compatible with LED bulbs for energy efficiency. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 499,
+      "dimensions": {
+        "width": 0.942,
+        "height": 1.597,
+        "depth": 0.69,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_FloorLamp_029.glb",
+        "glb_size_mb": 0.32,
+        "usdz": "assets/usdz/CGT_FloorLamp_029.usdz",
+        "usdz_size_mb": 0.8,
+        "vertices": 7136,
+        "faces": 8872
+      },
+      "thumbnail": "assets/thumbnails/floorlamp_029.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "adjustable",
+        "ambient",
+        "contemporary",
+        "floorlamp",
+        "illumination",
+        "lighting",
+        "modern",
+        "reading"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "side_table_001",
+      "sku": "CGT-ST001",
+      "name": "Accent Side Table - Model 001",
+      "category": "Side Table",
+      "type": "tables",
+      "description": "Measuring 50cm W \u00d7 54cm H \u00d7 50cm D, this compact side table offers versatile functionality. Ideal as a bedside table, end table, or accent piece in any room. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 299,
+      "dimensions": {
+        "width": 0.5,
+        "height": 0.535,
+        "depth": 0.5,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_side_table_001.glb",
+        "glb_size_mb": 0.03,
+        "usdz": "assets/usdz/CGT_side_table_001.usdz",
+        "usdz_size_mb": 0.04,
+        "vertices": 832,
+        "faces": 856
+      },
+      "thumbnail": "assets/thumbnails/side_table_001.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "bedside",
+        "compact",
+        "contemporary",
+        "end table",
+        "modern",
+        "side table",
+        "solid construction",
+        "tables",
+        "wood"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "side_table_018",
+      "sku": "CGT-ST018",
+      "name": "Accent Side Table - Model 018",
+      "category": "Side Table",
+      "type": "tables",
+      "description": "Measuring 51cm W \u00d7 38cm H \u00d7 51cm D, this compact side table offers versatile functionality. Ideal as a bedside table, end table, or accent piece in any room. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 249,
+      "dimensions": {
+        "width": 0.506,
+        "height": 0.379,
+        "depth": 0.506,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_side_table_018.glb",
+        "glb_size_mb": 0.06,
+        "usdz": "assets/usdz/CGT_side_table_018.usdz",
+        "usdz_size_mb": 0.16,
+        "vertices": 1638,
+        "faces": 2332
+      },
+      "thumbnail": "assets/thumbnails/side_table_018.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "bedside",
+        "compact",
+        "contemporary",
+        "end table",
+        "modern",
+        "side table",
+        "solid construction",
+        "tables",
+        "wood"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "side_table_039",
+      "sku": "CGT-ST039",
+      "name": "Modern Side Table - Model 039",
+      "category": "Side Table",
+      "type": "tables",
+      "description": "Measuring 34cm W \u00d7 36cm H \u00d7 34cm D, this compact side table offers versatile functionality. Ideal as a bedside table, end table, or accent piece in any room. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 299,
+      "dimensions": {
+        "width": 0.345,
+        "height": 0.359,
+        "depth": 0.345,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_side_table_039.glb",
+        "glb_size_mb": 0.03,
+        "usdz": "assets/usdz/CGT_side_table_039.usdz",
+        "usdz_size_mb": 0.04,
+        "vertices": 800,
+        "faces": 396
+      },
+      "thumbnail": null,
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "bedside",
+        "compact",
+        "end table",
+        "minimalist",
+        "side table",
+        "sleek",
+        "solid construction",
+        "tables",
+        "wood"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "side_table_042",
+      "sku": "CGT-ST042",
+      "name": "Modern Side Table - Model 042",
+      "category": "Side Table",
+      "type": "tables",
+      "description": "Measuring 41cm W \u00d7 57cm H \u00d7 41cm D, this compact side table offers versatile functionality. Ideal as a bedside table, end table, or accent piece in any room. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 299,
+      "dimensions": {
+        "width": 0.412,
+        "height": 0.57,
+        "depth": 0.412,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_side_table_042.glb",
+        "glb_size_mb": 0.07,
+        "usdz": "assets/usdz/CGT_side_table_042.usdz",
+        "usdz_size_mb": 0.19,
+        "vertices": 1401,
+        "faces": 2054
+      },
+      "thumbnail": null,
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "bedside",
+        "compact",
+        "end table",
+        "minimalist",
+        "side table",
+        "sleek",
+        "solid construction",
+        "tables",
+        "wood"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "side_table_077",
+      "sku": "CGT-ST077",
+      "name": "Designer Side Table - Model 077",
+      "category": "Side Table",
+      "type": "tables",
+      "description": "Measuring 61cm W \u00d7 56cm H \u00d7 61cm D, this compact side table offers versatile functionality. Ideal as a bedside table, end table, or accent piece in any room. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 349,
+      "dimensions": {
+        "width": 0.609,
+        "height": 0.565,
+        "depth": 0.609,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_side_table_077.glb",
+        "glb_size_mb": 0.08,
+        "usdz": "assets/usdz/CGT_side_table_077.usdz",
+        "usdz_size_mb": 0.19,
+        "vertices": 1900,
+        "faces": 2792
+      },
+      "thumbnail": null,
+      "tags": [
+        "3D model",
+        "AR ready",
+        "accent",
+        "bedside",
+        "compact",
+        "designer",
+        "end table",
+        "premium",
+        "side table",
+        "solid construction",
+        "tables",
+        "wood"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "sofa_002",
+      "sku": "CGT-S002",
+      "name": "Comfort Sofa - Model 002",
+      "category": "Sofa",
+      "type": "seating",
+      "description": "Measuring 284cm W \u00d7 83cm H \u00d7 133cm D, this sofa delivers exceptional comfort and timeless design. Built with quality materials and expert craftsmanship, it's the perfect centerpiece for any living space. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 1649,
+      "dimensions": {
+        "width": 2.836,
+        "height": 0.83,
+        "depth": 1.333,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Sofa_002.glb",
+        "glb_size_mb": 1.73,
+        "usdz": "assets/usdz/CGT_Sofa_002.usdz",
+        "usdz_size_mb": 2.57,
+        "vertices": 10980,
+        "faces": 14468
+      },
+      "thumbnail": "assets/thumbnails/sofa_002.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "comfort",
+        "contemporary",
+        "entertaining",
+        "fabric",
+        "living room",
+        "modern",
+        "seating",
+        "sectional",
+        "sofa",
+        "upholstered"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "table_17",
+      "sku": "CGT-T17",
+      "name": "Dining Table - Model 17",
+      "category": "Table",
+      "type": "tables",
+      "description": "Measuring 165cm W \u00d7 103cm H \u00d7 165cm D, this table showcases expert craftsmanship and functional design. Features a sturdy construction and elegant finish, making it ideal for dining rooms or conference spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 1249,
+      "dimensions": {
+        "width": 1.649,
+        "height": 1.033,
+        "depth": 1.649,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Table_17_001.glb",
+        "glb_size_mb": 0.07,
+        "usdz": "assets/usdz/CGT_Table_17_001.usdz",
+        "usdz_size_mb": 0.15,
+        "vertices": 1836,
+        "faces": 2196
+      },
+      "thumbnail": "assets/thumbnails/table_17.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "conference",
+        "contemporary",
+        "dining",
+        "modern",
+        "solid construction",
+        "solid wood",
+        "table",
+        "tables",
+        "wood",
+        "workspace"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "table_38",
+      "sku": "CGT-T38",
+      "name": "Conference Table - Model 38",
+      "category": "Table",
+      "type": "tables",
+      "description": "Measuring 103cm W \u00d7 108cm H \u00d7 103cm D, this table showcases expert craftsmanship and functional design. Features a sturdy construction and elegant finish, making it ideal for dining rooms or conference spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 899,
+      "dimensions": {
+        "width": 1.032,
+        "height": 1.081,
+        "depth": 1.032,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Table_38_001.glb",
+        "glb_size_mb": 0.2,
+        "usdz": "assets/usdz/CGT_Table_38_001.usdz",
+        "usdz_size_mb": 0.47,
+        "vertices": 5000,
+        "faces": 7140
+      },
+      "thumbnail": "assets/thumbnails/table_38.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "conference",
+        "dining",
+        "minimalist",
+        "sleek",
+        "solid construction",
+        "solid wood",
+        "table",
+        "tables",
+        "wood",
+        "workspace"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "table_49",
+      "sku": "CGT-T49",
+      "name": "Conference Table - Model 49",
+      "category": "Table",
+      "type": "tables",
+      "description": "Measuring 62cm W \u00d7 76cm H \u00d7 87cm D, this table showcases expert craftsmanship and functional design. Features a sturdy construction and elegant finish, making it ideal for dining rooms or conference spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 1699,
+      "dimensions": {
+        "width": 0.624,
+        "height": 0.76,
+        "depth": 0.874,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Table_49_001.glb",
+        "glb_size_mb": 0.01,
+        "usdz": "assets/usdz/CGT_Table_49_001.usdz",
+        "usdz_size_mb": 0.02,
+        "vertices": 346,
+        "faces": 236
+      },
+      "thumbnail": "assets/thumbnails/table_49.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "conference",
+        "dining",
+        "minimalist",
+        "sleek",
+        "solid construction",
+        "solid wood",
+        "table",
+        "tables",
+        "wood",
+        "workspace"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "table_63",
+      "sku": "CGT-T63",
+      "name": "Modern Table - Model 63",
+      "category": "Table",
+      "type": "tables",
+      "description": "Measuring 338cm W \u00d7 117cm H \u00d7 123cm D, this table showcases expert craftsmanship and functional design. Features a sturdy construction and elegant finish, making it ideal for dining rooms or conference spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 1799,
+      "dimensions": {
+        "width": 3.38,
+        "height": 1.173,
+        "depth": 1.227,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Table_63_001.glb",
+        "glb_size_mb": 0.03,
+        "usdz": "assets/usdz/CGT_Table_63_001.usdz",
+        "usdz_size_mb": 0.04,
+        "vertices": 740,
+        "faces": 404
+      },
+      "thumbnail": "assets/thumbnails/table_63.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "conference",
+        "designer",
+        "dining",
+        "premium",
+        "solid construction",
+        "solid wood",
+        "table",
+        "tables",
+        "wood",
+        "workspace"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "table_96",
+      "sku": "CGT-T96",
+      "name": "Executive Table - Model 96",
+      "category": "Table",
+      "type": "tables",
+      "description": "Measuring 92cm W \u00d7 93cm H \u00d7 92cm D, this table showcases expert craftsmanship and functional design. Features a sturdy construction and elegant finish, making it ideal for dining rooms or conference spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 1799,
+      "dimensions": {
+        "width": 0.917,
+        "height": 0.927,
+        "depth": 0.919,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Table_96_001.glb",
+        "glb_size_mb": 0.02,
+        "usdz": "assets/usdz/CGT_Table_96_001.usdz",
+        "usdz_size_mb": 0.02,
+        "vertices": 396,
+        "faces": 216
+      },
+      "thumbnail": "assets/thumbnails/table_96.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "conference",
+        "designer",
+        "dining",
+        "premium",
+        "solid construction",
+        "solid wood",
+        "table",
+        "tables",
+        "wood",
+        "workspace"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "table_lamp_16",
+      "sku": "CGT-TL16",
+      "name": "Table Lamp Model 16",
+      "category": "Table Lamp",
+      "type": "lighting",
+      "description": "Measuring 39cm W \u00d7 59cm H \u00d7 39cm D, this table lamp delivers focused task lighting with contemporary style. Perfect for desks, bedside tables, or console surfaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 199,
+      "dimensions": {
+        "width": 0.39,
+        "height": 0.593,
+        "depth": 0.389,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Table_Lamp_16_001.glb",
+        "glb_size_mb": 0.09,
+        "usdz": "assets/usdz/CGT_Table_Lamp_16_001.usdz",
+        "usdz_size_mb": 0.22,
+        "vertices": 2116,
+        "faces": 3225
+      },
+      "thumbnail": "assets/thumbnails/table_lamp_16.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "bedside",
+        "contemporary",
+        "decorative",
+        "desk",
+        "illumination",
+        "lighting",
+        "modern",
+        "table lamp",
+        "task lighting"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "table_lamp_38",
+      "sku": "CGT-TL38",
+      "name": "Table Lamp Model 38",
+      "category": "Table Lamp",
+      "type": "lighting",
+      "description": "Measuring 33cm W \u00d7 61cm H \u00d7 33cm D, this table lamp delivers focused task lighting with contemporary style. Perfect for desks, bedside tables, or console surfaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 299,
+      "dimensions": {
+        "width": 0.33,
+        "height": 0.613,
+        "depth": 0.33,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Table_Lamp_38_001.glb",
+        "glb_size_mb": 0.11,
+        "usdz": "assets/usdz/CGT_Table_Lamp_38_001.usdz",
+        "usdz_size_mb": 0.21,
+        "vertices": 2923,
+        "faces": 2892
+      },
+      "thumbnail": "assets/thumbnails/table_lamp_38.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "bedside",
+        "decorative",
+        "desk",
+        "illumination",
+        "lighting",
+        "minimalist",
+        "sleek",
+        "table lamp",
+        "task lighting"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "table_lamp_46",
+      "sku": "CGT-TL46",
+      "name": "Table Lamp Model 46",
+      "category": "Table Lamp",
+      "type": "lighting",
+      "description": "Measuring 24cm W \u00d7 30cm H \u00d7 12cm D, this table lamp delivers focused task lighting with contemporary style. Perfect for desks, bedside tables, or console surfaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 299,
+      "dimensions": {
+        "width": 0.239,
+        "height": 0.303,
+        "depth": 0.121,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Table_Lamp_46_001.glb",
+        "glb_size_mb": 0.16,
+        "usdz": "assets/usdz/CGT_Table_Lamp_46_001.usdz",
+        "usdz_size_mb": 0.41,
+        "vertices": 4005,
+        "faces": 6254
+      },
+      "thumbnail": "assets/thumbnails/table_lamp_46.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "bedside",
+        "decorative",
+        "desk",
+        "illumination",
+        "lighting",
+        "minimalist",
+        "sleek",
+        "table lamp",
+        "task lighting"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "table_lamp_74",
+      "sku": "CGT-TL74",
+      "name": "Table Lamp Model 74",
+      "category": "Table Lamp",
+      "type": "lighting",
+      "description": "Measuring 35cm W \u00d7 46cm H \u00d7 35cm D, this table lamp delivers focused task lighting with contemporary style. Perfect for desks, bedside tables, or console surfaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 249,
+      "dimensions": {
+        "width": 0.35,
+        "height": 0.462,
+        "depth": 0.35,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Table_Lamp_74_001.glb",
+        "glb_size_mb": 0.11,
+        "usdz": "assets/usdz/CGT_Table_Lamp_74_001.usdz",
+        "usdz_size_mb": 0.17,
+        "vertices": 3128,
+        "faces": 2200
+      },
+      "thumbnail": "assets/thumbnails/table_lamp_74.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "bedside",
+        "decorative",
+        "designer",
+        "desk",
+        "illumination",
+        "lighting",
+        "premium",
+        "table lamp",
+        "task lighting"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "table_lamp_91",
+      "sku": "CGT-TL91",
+      "name": "Table Lamp Model 91",
+      "category": "Table Lamp",
+      "type": "lighting",
+      "description": "Measuring 17cm W \u00d7 19cm H \u00d7 17cm D, this table lamp delivers focused task lighting with contemporary style. Perfect for desks, bedside tables, or console surfaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 199,
+      "dimensions": {
+        "width": 0.171,
+        "height": 0.19,
+        "depth": 0.171,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Table_Lamp_91_001.glb",
+        "glb_size_mb": 0.04,
+        "usdz": "assets/usdz/CGT_Table_Lamp_91_001.usdz",
+        "usdz_size_mb": 0.09,
+        "vertices": 928,
+        "faces": 1312
+      },
+      "thumbnail": "assets/thumbnails/table_lamp_91.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "bedside",
+        "decorative",
+        "designer",
+        "desk",
+        "illumination",
+        "lighting",
+        "premium",
+        "table lamp",
+        "task lighting"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "walllight_01",
+      "sku": "CGT-W01",
+      "name": "Walllight Model 01",
+      "category": "Walllight",
+      "type": "furniture",
+      "description": "Measuring 51cm W \u00d7 62cm H \u00d7 27cm D, A quality walllight piece designed for modern living spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 449,
+      "dimensions": {
+        "width": 0.509,
+        "height": 0.618,
+        "depth": 0.267,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Wall-Light_01_001.glb",
+        "glb_size_mb": 0.72,
+        "usdz": "assets/usdz/CGT_Wall-Light_01_001.usdz",
+        "usdz_size_mb": 0.87,
+        "vertices": 8455,
+        "faces": 5810
+      },
+      "thumbnail": "assets/thumbnails/walllight_01.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "contemporary",
+        "furniture",
+        "illumination",
+        "lighting",
+        "modern",
+        "walllight"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "walllight_10",
+      "sku": "CGT-W10",
+      "name": "Walllight Model 10",
+      "category": "Walllight",
+      "type": "furniture",
+      "description": "Measuring 18cm W \u00d7 58cm H \u00d7 21cm D, A quality walllight piece designed for modern living spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 299,
+      "dimensions": {
+        "width": 0.183,
+        "height": 0.582,
+        "depth": 0.214,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Wall-Light_10_001.glb",
+        "glb_size_mb": 1.12,
+        "usdz": "assets/usdz/CGT_Wall-Light_10_001.usdz",
+        "usdz_size_mb": 1.23,
+        "vertices": 2208,
+        "faces": 2972
+      },
+      "thumbnail": "assets/thumbnails/walllight_10.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "contemporary",
+        "furniture",
+        "illumination",
+        "lighting",
+        "modern",
+        "walllight"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    },
+    {
+      "id": "walllight_38",
+      "sku": "CGT-W38",
+      "name": "Walllight Model 38",
+      "category": "Walllight",
+      "type": "furniture",
+      "description": "Measuring 17cm W \u00d7 17cm H \u00d7 19cm D, A quality walllight piece designed for modern living spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
+      "price": 349,
+      "dimensions": {
+        "width": 0.171,
+        "height": 0.171,
+        "depth": 0.19,
+        "unit": "meters"
+      },
+      "models": {
+        "glb": "assets/models/CGT_Wall-Light_38_001.glb",
+        "glb_size_mb": 0.16,
+        "usdz": "assets/usdz/CGT_Wall-Light_38_001.usdz",
+        "usdz_size_mb": 0.21,
+        "vertices": 842,
+        "faces": 1312
+      },
+      "thumbnail": "assets/thumbnails/walllight_38.jpg",
+      "tags": [
+        "3D model",
+        "AR ready",
+        "LED compatible",
+        "furniture",
+        "illumination",
+        "lighting",
+        "minimalist",
+        "sleek",
+        "walllight"
+      ],
+      "ar_compatible": true,
+      "in_stock": true
+    }
+  ]
+}
