@@ -78,24 +78,24 @@ export default function CatalogPage() {
     <div className="min-h-screen relative">
       <Navbar />
 
-      <main className="container mx-auto px-4 py-16 sm:py-20">
+      <main className="container mx-auto px-3 sm:px-4 py-8 sm:py-12 md:py-16">
         {/* Hero Section */}
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-8 sm:mb-10 md:mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">
             Our Catalog
           </h1>
-          <p className="text-base md:text-lg text-gray-600">
+          <p className="text-sm sm:text-base md:text-lg text-gray-600">
             {allItems.length} items available
           </p>
         </motion.div>
 
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+        {/* Product Grid - 2 columns on mobile */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
           {currentItems.map((item, index) => (
             <CatalogCard key={item.id} item={item} index={index} />
           ))}
@@ -103,14 +103,14 @@ export default function CatalogPage() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex justify-center items-center gap-2 mt-12">
+          <div className="flex justify-center items-center gap-1 sm:gap-2 mt-8 sm:mt-12">
             {/* Previous Button */}
             <Button
               variant="outline"
               size="sm"
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className="px-3 py-2 border-gray-300"
+              className="px-2 py-1 sm:px-3 sm:py-2 border-gray-300"
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -121,7 +121,7 @@ export default function CatalogPage() {
                 return (
                   <span
                     key={`ellipsis-${index}`}
-                    className="px-3 py-2 text-gray-500"
+                    className="px-2 py-1 sm:px-3 sm:py-2 text-gray-500 hidden sm:inline"
                   >
                     ...
                   </span>
@@ -134,7 +134,7 @@ export default function CatalogPage() {
                   variant={currentPage === page ? "default" : "outline"}
                   size="sm"
                   onClick={() => handlePageChange(page as number)}
-                  className={`px-4 py-2 ${
+                  className={`px-2 py-1 sm:px-4 sm:py-2 text-sm ${
                     currentPage === page
                       ? "bg-black text-white hover:bg-gray-800"
                       : "border-gray-300 hover:bg-gray-50"
@@ -151,7 +151,7 @@ export default function CatalogPage() {
               size="sm"
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="px-3 py-2 border-gray-300"
+              className="px-2 py-1 sm:px-3 sm:py-2 border-gray-300"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
@@ -159,7 +159,7 @@ export default function CatalogPage() {
         )}
 
         {/* Results Info */}
-        <div className="text-center mt-6 text-sm text-gray-600">
+        <div className="text-center mt-4 sm:mt-6 text-xs sm:text-sm text-gray-600">
           Showing {indexOfFirstItem + 1} - {Math.min(indexOfLastItem, allItems.length)} of {allItems.length} items
         </div>
       </main>

@@ -88,18 +88,18 @@ export default function PricingPage() {
     <div className="min-h-screen relative">
       <Navbar />
 
-      <main className="container mx-auto px-4 py-16 sm:py-20">
+      <main className="container mx-auto px-3 sm:px-4 py-12 sm:py-16 md:py-20">
         {/* Hero Section */}
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">
             Choose Your Plan
           </h1>
-          <p className="text-base md:text-lg text-gray-600">
+          <p className="text-sm sm:text-base md:text-lg text-gray-600">
             Transform your space with the perfect plan for your needs
           </p>
         </motion.div>
@@ -109,7 +109,7 @@ export default function PricingPage() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto"
         >
           {pricingTiers.map((tier) => (
             <motion.div key={tier.name} variants={itemVariants}>
@@ -130,12 +130,12 @@ export default function PricingPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.0 }}
-          className="mt-20 text-center"
+          className="mt-12 sm:mt-16 md:mt-20 text-center px-4"
         >
-          <p className="text-sm text-gray-600">
+          <p className="text-xs sm:text-sm text-gray-600">
             All plans include a 14-day free trial. No credit card required.
           </p>
-          <p className="text-sm text-gray-500 mt-2">
+          <p className="text-xs sm:text-sm text-gray-500 mt-2">
             Need a custom enterprise plan?{" "}
             <a
               href="mailto:sales@homeview360.com"

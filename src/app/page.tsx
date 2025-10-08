@@ -11,32 +11,32 @@ export default function HomePage() {
     <div className="h-screen relative overflow-hidden">
       <Navbar />
 
-      <main className="container mx-auto px-4">
+      <main className="container mx-auto px-3 sm:px-4">
         {/* Hero Section */}
-        <div className="flex flex-col items-center justify-center h-[calc(100vh-5rem)] space-y-8 text-center relative z-10 -mt-8">
+        <div className="flex flex-col items-center justify-center h-[calc(100vh-5rem)] space-y-4 sm:space-y-6 md:space-y-8 text-center relative z-10 -mt-4 sm:-mt-6 md:-mt-8">
 
           {/* Simple Tagline */}
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full px-6 py-3 shadow-lg"
+            className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full px-4 py-2 sm:px-6 sm:py-3 shadow-lg"
           >
-            <span className="text-sm font-medium text-gray-800">See Your Dream Furniture in Your Dream Home.</span>
+            <span className="text-xs sm:text-sm font-medium text-gray-800">See Your Dream Furniture in Your Dream Home.</span>
           </motion.div>
 
           <motion.div
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="space-y-8 max-w-5xl"
+            className="space-y-4 sm:space-y-6 md:space-y-8 max-w-5xl px-2"
           >
             {/* Main Headline with Gradient */}
             <motion.h1
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="text-6xl md:text-8xl font-bold tracking-tight"
+              className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight"
             >
               <span className="bg-gradient-to-r from-gray-900 via-black to-gray-800 bg-clip-text text-transparent">
                 Visualize Your
@@ -52,7 +52,7 @@ export default function HomePage() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 1.0 }}
-              className="text-xl md:text-2xl text-gray-800 max-w-3xl mx-auto leading-relaxed font-medium"
+              className="text-base sm:text-xl md:text-2xl text-gray-800 max-w-3xl mx-auto leading-relaxed font-medium"
             >
               Experience furniture in your home before you buy with HomeView360&apos;s immersive AR technology
             </motion.p>
@@ -63,7 +63,7 @@ export default function HomePage() {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.2 }}
-            className="flex flex-col sm:flex-row gap-4 pt-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 w-full sm:w-auto px-4 sm:px-0"
           >
             <PWAInstallButton />
 
@@ -71,11 +71,12 @@ export default function HomePage() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              className="w-full sm:w-auto"
             >
               <Button
                 variant="outline"
                 size="lg"
-                className="bg-white/80 backdrop-blur-sm border-2 border-gray-300 text-black hover:bg-white hover:border-gray-400 px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                className="w-full sm:w-auto bg-white/80 backdrop-blur-sm border-2 border-gray-300 text-black hover:bg-white hover:border-gray-400 px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
               >
                 {/* Shimmer effect */}
                 <motion.div
@@ -83,9 +84,9 @@ export default function HomePage() {
                   transition={{ duration: 0.6 }}
                 />
 
-                <Globe className="mr-2 h-5 w-5" />
+                <Globe className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 Use Web App
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </motion.div>
           </motion.div>
@@ -95,7 +96,7 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.4 }}
-            className="text-sm text-gray-800 pt-4 font-medium"
+            className="text-xs sm:text-sm text-gray-800 pt-2 sm:pt-4 font-medium"
           >
             Available for iOS, Android, and Web
           </motion.p>

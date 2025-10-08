@@ -21,8 +21,7 @@ import {
   Settings,
   LogOut,
   CreditCard,
-  Menu,
-  X
+  Menu
 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -58,66 +57,76 @@ export default function Navbar() {
             className="flex items-center"
           >
             <Link href="/" className="block">
-              <Logo size="md" />
+              <div className="md:hidden">
+                <Logo size="sm" />
+              </div>
+              <div className="hidden md:block">
+                <Logo size="md" />
+              </div>
             </Link>
           </motion.div>
 
-          {/* Center Section - Navigation Links */}
+          {/* Center Section - Desktop Navigation Links */}
           <motion.div
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="hidden md:flex items-center space-x-10"
           >
-            <Link
-              href="/about"
-              className="text-black hover:text-gray-600 transition-all duration-200 font-medium relative group"
-            >
-              About
-              <motion.div
-                className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-200"
-                whileHover={{ width: "100%" }}
-              />
-            </Link>
-            <Link
-              href="/pricing"
-              className="text-black hover:text-gray-600 transition-all duration-200 font-medium relative group"
-            >
-              Pricing
-              <motion.div
-                className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-200"
-                whileHover={{ width: "100%" }}
-              />
-            </Link>
-            <Link
-              href="/catalog"
-              className="text-black hover:text-gray-600 transition-all duration-200 font-medium relative group"
-            >
-              Catalog
-              <motion.div
-                className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-200"
-                whileHover={{ width: "100%" }}
-              />
-            </Link>
-            <Link
-              href="/search"
-              className="text-black hover:text-gray-600 transition-all duration-200 font-medium relative group"
-            >
-              Search
-              <motion.div
-                className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-200"
-                whileHover={{ width: "100%" }}
-              />
-            </Link>
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-black hover:text-gray-600 transition-all duration-200 font-medium relative group"
+              >
+                {link.label}
+                <motion.div
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-200"
+                  whileHover={{ width: "100%" }}
+                />
+              </Link>
+            ))}
           </motion.div>
 
-          {/* Right Section - User Profile */}
+          {/* Right Section - Mobile Menu + Auth Buttons */}
           <motion.div
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex items-center space-x-3"
+            className="flex items-center gap-2 sm:gap-3"
           >
+            {/* Mobile Menu Button */}
+            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="md:hidden p-2"
+                  aria-label="Open menu"
+                >
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[280px] sm:w-[320px]">
+                <SheetHeader>
+                  <SheetTitle>Menu</SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col gap-4 mt-8">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors py-2"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
+
+            {/* Auth Section */}
             {isLoggedIn ? (
               // Logged in user dropdown
               <DropdownMenu>
@@ -125,7 +134,7 @@ export default function Navbar() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="relative h-9 w-9 rounded-full bg-black/10 hover:bg-black/20 transition-colors flex items-center justify-center"
+                    className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-black/10 hover:bg-black/20 transition-colors flex items-center justify-center"
                   >
                     <User className="h-4 w-4 text-black" />
                   </motion.button>
@@ -152,18 +161,20 @@ export default function Navbar() {
               </DropdownMenu>
             ) : (
               // Not logged in - Login/Signup buttons
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center gap-2">
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Button
                     variant="outline"
-                    className="text-black border-2 border-gray-300 hover:bg-black/5 hover:border-gray-400 px-4 py-2 h-auto"
+                    size="sm"
+                    className="text-black border-2 border-gray-300 hover:bg-black/5 hover:border-gray-400 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base h-auto"
                   >
                     Log In
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="hidden sm:block">
                   <Button
-                    className="bg-black text-white hover:bg-gray-800 px-4 py-2 h-auto transition-colors"
+                    size="sm"
+                    className="bg-black text-white hover:bg-gray-800 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base h-auto transition-colors"
                   >
                     Sign Up
                   </Button>
