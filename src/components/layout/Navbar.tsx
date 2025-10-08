@@ -21,7 +21,8 @@ import {
   Settings,
   LogOut,
   CreditCard,
-  Menu
+  Menu,
+  ChevronRight
 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -44,7 +45,7 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md"
+      className="sticky top-0 z-50 w-full"
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex h-16 sm:h-20 items-center justify-between">
@@ -98,30 +99,75 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="md:hidden p-2"
-                  aria-label="Open menu"
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="md:hidden"
                 >
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-[280px] sm:w-[320px]">
-                <SheetHeader>
-                  <SheetTitle>Menu</SheetTitle>
-                </SheetHeader>
-                <div className="flex flex-col gap-4 mt-8">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors py-2"
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="p-2 hover:bg-black/5 rounded-lg"
+                    aria-label="Open menu"
+                  >
+                    <motion.div
+                      animate={isMenuOpen ? { rotate: 90 } : { rotate: 0 }}
+                      transition={{ duration: 0.2 }}
                     >
-                      {link.label}
-                    </Link>
-                  ))}
+                      <Menu className="h-5 w-5" />
+                    </motion.div>
+                  </Button>
+                </motion.div>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[280px] bg-white/95 backdrop-blur-2xl border-l border-gray-200/50">
+                <SheetHeader className="sr-only">
+                  <SheetTitle>Navigation Menu</SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col h-full">
+                  {/* Navigation Links */}
+                  <div className="flex-1 pt-8">
+                    {navLinks.map((link, index) => (
+                      <motion.div
+                        key={link.href}
+                        initial={{ x: 30, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.3, delay: index * 0.08 }}
+                      >
+                        <Link
+                          href={link.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="flex items-center justify-between py-4 px-4 text-lg font-medium text-gray-900 hover:text-black transition-all duration-200 hover:bg-gray-50/70 rounded-xl mx-2 group"
+                        >
+                          <span>{link.label}</span>
+                          <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-gray-600 group-hover:translate-x-0.5 transition-all duration-200" />
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Mobile Auth Section */}
+                  {!isLoggedIn && (
+                    <motion.div
+                      initial={{ y: 30, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.4, delay: 0.2 }}
+                      className="p-4 space-y-3 border-t border-gray-200/50"
+                    >
+                      <Button
+                        variant="outline"
+                        className="w-full py-3 text-base font-medium border border-gray-300 hover:border-gray-400 hover:bg-gray-50/80 rounded-xl"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Log In
+                      </Button>
+                      <Button
+                        className="w-full py-3 text-base font-medium bg-black text-white hover:bg-gray-800 rounded-xl"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Sign Up
+                      </Button>
+                    </motion.div>
+                  )}
                 </div>
               </SheetContent>
             </Sheet>

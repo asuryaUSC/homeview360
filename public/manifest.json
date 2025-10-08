@@ -2,7 +2,7 @@
   "name": "HomeView360",
   "short_name": "HomeView360",
   "description": "Immersive 360° home viewing experience",
-  "start_url": "/",
+  "start_url": "/catalog",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
