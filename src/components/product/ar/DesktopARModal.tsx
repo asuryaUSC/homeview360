@@ -132,7 +132,7 @@ export default function DesktopARModal({ product, isOpen, onClose }: DesktopARMo
 
               <div className="flex items-center justify-center space-x-2 text-gray-600">
                 <Eye className="h-5 w-5" />
-                <span className="font-medium">Step 3: Tap "View in AR"</span>
+                <span className="font-medium">Step 3: Tap &quot;View in AR&quot;</span>
               </div>
             </div>
 
@@ -140,7 +140,7 @@ export default function DesktopARModal({ product, isOpen, onClose }: DesktopARMo
             <div className="flex justify-center">
               <div className="p-4 bg-white border-2 border-gray-200 rounded-xl shadow-sm">
                 {qrCodeUrl ? (
-                  <img
+                  <Image
                     src={qrCodeUrl}
                     alt="QR Code"
                     width={200}

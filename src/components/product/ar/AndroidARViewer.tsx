@@ -2,31 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, RotateCcw, ZoomIn, ZoomOut } from "lucide-react";
+import { X, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CatalogItem } from "@/types/catalog";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'model-viewer': {
-        src?: string;
-        alt?: string;
-        ar?: boolean;
-        'ar-modes'?: string;
-        'camera-controls'?: boolean;
-        'auto-rotate'?: boolean;
-        'shadow-intensity'?: string;
-        exposure?: string;
-        'environment-image'?: string;
-        style?: React.CSSProperties;
-        onLoad?: () => void;
-        onError?: () => void;
-        children?: React.ReactNode;
-      };
-    }
-  }
-}
 
 interface AndroidARViewerProps {
   product: CatalogItem;
@@ -190,7 +169,7 @@ export default function AndroidARViewer({ product, isOpen, onClose }: AndroidARV
               onClick={() => {
                 const modelViewer = document.querySelector('model-viewer');
                 if (modelViewer) {
-                  // @ts-ignore
+                  // @ts-expect-error - Model viewer resetTurntableRotation method not typed
                   modelViewer.resetTurntableRotation();
                 }
               }}
@@ -209,7 +188,7 @@ export default function AndroidARViewer({ product, isOpen, onClose }: AndroidARV
             className="absolute top-20 left-4 right-4 text-center"
           >
             <div className="bg-black/50 backdrop-blur-lg rounded-lg p-3 text-white text-sm">
-              <p>Drag to rotate • Pinch to zoom • Tap "View in your space" for AR</p>
+              <p>Drag to rotate • Pinch to zoom • Tap &quot;View in your space&quot; for AR</p>
             </div>
           </motion.div>
         )}
