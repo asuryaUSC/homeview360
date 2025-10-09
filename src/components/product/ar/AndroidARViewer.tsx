@@ -1,10 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, RotateCcw, ZoomIn, ZoomOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CatalogItem } from "@/types/catalog";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'model-viewer': {
+        src?: string;
+        alt?: string;
+        ar?: boolean;
+        'ar-modes'?: string;
+        'camera-controls'?: boolean;
+        'auto-rotate'?: boolean;
+        'shadow-intensity'?: string;
+        exposure?: string;
+        'environment-image'?: string;
+        style?: React.CSSProperties;
+        onLoad?: () => void;
+        onError?: () => void;
+        children?: React.ReactNode;
+      };
+    }
+  }
+}
 
 interface AndroidARViewerProps {
   product: CatalogItem;
@@ -12,13 +34,6 @@ interface AndroidARViewerProps {
   onClose: () => void;
 }
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'model-viewer': any;
-    }
-  }
-}
 
 export default function AndroidARViewer({ product, isOpen, onClose }: AndroidARViewerProps) {
   const [isModelLoaded, setIsModelLoaded] = useState(false);
@@ -121,39 +136,44 @@ export default function AndroidARViewer({ product, isOpen, onClose }: AndroidARV
         )}
 
         {/* Model Viewer */}
-        <model-viewer
-          src={`/${product.models.glb}`}
-          alt={product.name}
-          ar
-          ar-modes="webxr scene-viewer quick-look"
-          camera-controls
-          auto-rotate
-          shadow-intensity="1"
-          exposure="1"
-          environment-image="neutral"
-          style={{
+        {React.createElement('model-viewer', {
+          src: `/${product.models.glb}`,
+          alt: product.name,
+          ar: true,
+          'ar-modes': 'webxr scene-viewer quick-look',
+          'camera-controls': true,
+          'auto-rotate': true,
+          'shadow-intensity': '1',
+          exposure: '1',
+          'environment-image': 'neutral',
+          style: {
             width: '100%',
             height: '100%',
             backgroundColor: '#000000'
-          }}
-          onLoad={handleModelLoad}
-          onError={handleModelError}
-        >
-          {/* AR Button */}
-          <Button
-            slot="ar-button"
-            className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-white text-black hover:bg-gray-200 px-8 py-3 rounded-full font-medium"
-          >
-            View in your space
-          </Button>
+          },
+          onLoad: handleModelLoad,
+          onError: handleModelError
+        }, 
+          /* AR Button */
+          React.createElement(Button, {
+            slot: 'ar-button',
+            className: 'absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-white text-black hover:bg-gray-200 px-8 py-3 rounded-full font-medium'
+          }, 'View in your space'),
 
-          {/* Loading indicator */}
-          <div slot="progress-bar" className="absolute bottom-20 left-1/2 transform -translate-x-1/2">
-            <div className="bg-white/20 rounded-full h-2 w-48">
-              <div className="bg-white h-2 rounded-full transition-all duration-300"></div>
-            </div>
-          </div>
-        </model-viewer>
+          /* Loading indicator */
+          React.createElement('div', {
+            slot: 'progress-bar',
+            className: 'absolute bottom-20 left-1/2 transform -translate-x-1/2'
+          }, 
+            React.createElement('div', {
+              className: 'bg-white/20 rounded-full h-2 w-48'
+            },
+              React.createElement('div', {
+                className: 'bg-white h-2 rounded-full transition-all duration-300'
+              })
+            )
+          )
+        )}
 
         {/* Controls */}
         {isModelLoaded && (
