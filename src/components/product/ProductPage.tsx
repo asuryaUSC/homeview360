@@ -7,9 +7,8 @@ import ProductBreadcrumb from "./ProductBreadcrumb";
 import ProductImageGallery from "./ProductImageGallery";
 import ProductDetails from "./ProductDetails";
 import ProductDimensions from "./ProductDimensions";
-import { Button } from "@/components/ui/button";
-import { Eye } from "lucide-react";
 import { usePWAMode } from "@/hooks/usePWAMode";
+import ARButton from "./ar/ARButton";
 
 interface ProductPageProps {
   product: CatalogItem;
@@ -44,23 +43,9 @@ export default function ProductPage({ product }: ProductPageProps) {
               <ProductDetails product={product} />
 
               {/* AR Button */}
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="mt-8 sm:mt-10"
-              >
-                <Button
-                  size="lg"
-                  className="w-full sm:w-auto bg-black hover:bg-gray-800 text-white px-8 py-4 text-base font-medium rounded-xl transition-all duration-200 hover:scale-105"
-                >
-                  <Eye className="mr-2 h-5 w-5" />
-                  View in AR
-                </Button>
-                <p className="text-sm text-gray-600 mt-3">
-                  See how this looks in your space
-                </p>
-              </motion.div>
+              <div className="mt-8 sm:mt-10">
+                <ARButton product={product} />
+              </div>
 
               {/* Dimensions */}
               <div className="mt-8 sm:mt-10">
