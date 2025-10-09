@@ -6,6 +6,7 @@ import { X, Smartphone, QrCode, Eye, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CatalogItem } from "@/types/catalog";
 import Image from "next/image";
+import QRCode from "qrcode";
 
 interface DesktopARModalProps {
   product: CatalogItem;
@@ -14,7 +15,7 @@ interface DesktopARModalProps {
 }
 
 export default function DesktopARModal({ product, isOpen, onClose }: DesktopARModalProps) {
-  const [qrCodeUrl, setQrCodeUrl] = useState<string>("");
+  const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>("");
   const [productUrl, setProductUrl] = useState<string>("");
   const [copied, setCopied] = useState(false);
 
@@ -24,9 +25,19 @@ export default function DesktopARModal({ product, isOpen, onClose }: DesktopARMo
       const url = `${window.location.origin}/catalog/${product.id}`;
       setProductUrl(url);
 
-      // Generate QR code using a free service
-      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
-      setQrCodeUrl(qrUrl);
+      // Generate QR code client-side (more reliable for Vercel)
+      QRCode.toDataURL(url, {
+        width: 200,
+        margin: 2,
+        color: {
+          dark: '#000000',
+          light: '#FFFFFF'
+        }
+      }).then((dataUrl) => {
+        setQrCodeDataUrl(dataUrl);
+      }).catch((err) => {
+        console.error('QR code generation failed:', err);
+      });
 
       // Prevent body scroll
       document.body.style.overflow = 'hidden';
@@ -139,9 +150,9 @@ export default function DesktopARModal({ product, isOpen, onClose }: DesktopARMo
             {/* QR Code */}
             <div className="flex justify-center">
               <div className="p-4 bg-white border-2 border-gray-200 rounded-xl shadow-sm">
-                {qrCodeUrl ? (
+                {qrCodeDataUrl ? (
                   <Image
-                    src={qrCodeUrl}
+                    src={qrCodeDataUrl}
                     alt="QR Code"
                     width={200}
                     height={200}

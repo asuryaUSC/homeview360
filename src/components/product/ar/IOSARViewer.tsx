@@ -21,8 +21,9 @@ export default function IOSARViewer({
   setError
 }: IOSARViewerProps) {
 
-  const handleARLinkClick = () => {
+  const handleARLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!product.ar_compatible) {
+      e.preventDefault();
       setError("AR not available for this product");
       return;
     }
@@ -31,9 +32,10 @@ export default function IOSARViewer({
     setError(null);
 
     // Small delay to show loading state, then iOS will handle the AR
+    // Don't prevent default - let iOS Safari handle the AR link naturally
     setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 1000);
   };
 
   if (!product.ar_compatible) {
@@ -68,6 +70,7 @@ export default function IOSARViewer({
         rel="ar"
         onClick={handleARLinkClick}
         className="inline-block w-full sm:w-auto"
+        aria-label={`View ${product.name} in AR`}
       >
         <motion.div
           whileHover={{ scale: 1.05 }}
@@ -86,8 +89,10 @@ export default function IOSARViewer({
       <div className="text-sm text-gray-600">
         {error ? (
           <p className="text-red-600">{error}</p>
+        ) : isLoading ? (
+          <p className="text-blue-600">Preparing AR experience...</p>
         ) : (
-          <p>Tap to view in AR using iPhone&apos;s built-in AR</p>
+          <p>Tap to launch AR Quick Look on your iPhone</p>
         )}
       </div>
 
@@ -95,9 +100,9 @@ export default function IOSARViewer({
       {product.thumbnail && (
         <Image
           src={`/${product.thumbnail}`}
-          alt={product.name}
-          width={1}
-          height={1}
+          alt={`${product.name} thumbnail for AR`}
+          width={200}
+          height={200}
           style={{ display: 'none' }}
           priority
         />
