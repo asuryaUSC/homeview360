@@ -159,7 +159,10 @@ export default function SearchPage() {
                     {/* Thumbnail */}
                     <div className="relative w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden bg-gray-800">
                       <Image
-                        src={item.image}
+                        src={
+                          // Next/Image expects a string or StaticImport — ensure a string fallback
+                          item.image ?? "/icons/favicon-32.png"
+                        }
                         alt={item.name}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-300"

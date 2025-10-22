@@ -1,7 +1,7 @@
 "use client";
 
 import Navbar from "@/components/layout/Navbar";
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, type Variants } from "framer-motion";
 import { Search, Smartphone, Palette, Users, Shield } from "lucide-react";
 import { useRef } from "react";
 
@@ -13,10 +13,9 @@ export default function AboutPage() {
   });
 
   // Parallax transforms for connecting line (currently unused)
-  // const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   // Stagger animation variants
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: {
       opacity: 0,
       y: 60,
@@ -34,7 +33,7 @@ export default function AboutPage() {
     })
   };
 
-  const imageVariants = {
+  const imageVariants: Variants = {
     hidden: {
       opacity: 0,
       scale: 0.8,
