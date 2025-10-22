@@ -2,13 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
+import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import {
   Sheet,
   SheetContent,
@@ -17,10 +11,6 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import {
-  User,
-  Settings,
-  LogOut,
-  CreditCard,
   Menu,
   ChevronRight,
   Search
@@ -31,8 +21,8 @@ import Logo from "./Logo";
 import SearchModal from "@/components/pwa/SearchModal";
 
 export default function Navbar() {
-  // Mock user state - replace with actual auth later
-  const isLoggedIn = false;
+  // Get actual auth state from Clerk
+  const { isSignedIn, user } = useUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -160,87 +150,89 @@ export default function Navbar() {
                   </div>
 
                   {/* Mobile Auth Section */}
-                  {!isLoggedIn && (
-                    <motion.div
-                      initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.4, delay: 0.2 }}
-                      className="p-4 space-y-3 border-t border-gray-200/50"
-                    >
-                      <Button
-                        variant="outline"
-                        className="w-full py-3 text-base font-medium border border-gray-300 hover:border-gray-400 hover:bg-gray-50/80 rounded-xl"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        Log In
-                      </Button>
-                      <Button
-                        className="w-full py-3 text-base font-medium bg-black text-white hover:bg-gray-800 rounded-xl"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        Sign Up
-                      </Button>
-                    </motion.div>
-                  )}
+                  <motion.div
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 0.2 }}
+                    className="p-4 space-y-3 border-t border-gray-200/50"
+                  >
+                    {isSignedIn ? (
+                      <div className="flex items-center justify-center py-2">
+                        <UserButton 
+                          appearance={{
+                            elements: {
+                              avatarBox: "h-12 w-12"
+                            }
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <>
+                        <SignInButton mode="modal">
+                          <Button
+                            variant="outline"
+                            className="w-full py-3 text-base font-medium border border-gray-300 hover:border-gray-400 hover:bg-gray-50/80 rounded-xl"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            Log In
+                          </Button>
+                        </SignInButton>
+                        <SignUpButton mode="modal">
+                          <Button
+                            className="w-full py-3 text-base font-medium bg-black text-white hover:bg-gray-800 rounded-xl"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            Sign Up
+                          </Button>
+                        </SignUpButton>
+                      </>
+                    )}
+                  </motion.div>
                 </div>
               </SheetContent>
             </Sheet>
 
             {/* Auth Section */}
-            {isLoggedIn ? (
-              // Logged in user dropdown
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-black/10 hover:bg-black/20 transition-colors flex items-center justify-center"
-                  >
-                    <User className="h-4 w-4 text-black" />
-                  </motion.button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56" align="end" forceMount>
-                  <DropdownMenuItem>
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <CreditCard className="mr-2 h-4 w-4" />
-                    <span>Billing</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Settings className="mr-2 h-4 w-4" />
-                    <span>Settings</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Log out</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+            {isSignedIn ? (
+              // Logged in user - show Clerk's UserButton
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <UserButton 
+                  appearance={{
+                    elements: {
+                      avatarBox: "h-8 w-8 sm:h-9 sm:w-9"
+                    }
+                  }}
+                />
+              </motion.div>
             ) : (
               // Not logged in - Login/Signup buttons + Search Icon
               <div className="flex items-center gap-3">
                 {/* Log In Button - Hidden on mobile */}
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="hidden sm:block">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="text-black border-2 border-gray-300 hover:border-gray-900 hover:bg-gray-50 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base h-auto transition-colors duration-200"
-                  >
-                    Log In
-                  </Button>
+                  <SignInButton mode="modal">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-black border-2 border-gray-300 hover:border-gray-900 hover:bg-gray-50 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base h-auto transition-colors duration-200"
+                    >
+                      Log In
+                    </Button>
+                  </SignInButton>
                 </motion.div>
 
                 {/* Sign Up Button - Hidden on mobile */}
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="hidden sm:block">
-                  <Button
-                    size="sm"
-                    className="bg-black text-white hover:bg-gray-800 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base h-auto transition-colors duration-200"
-                  >
-                    Sign Up
-                  </Button>
+                  <SignUpButton mode="modal">
+                    <Button
+                      size="sm"
+                      className="bg-black text-white hover:bg-gray-800 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base h-auto transition-colors duration-200"
+                    >
+                      Sign Up
+                    </Button>
+                  </SignUpButton>
                 </motion.div>
 
                 {/* Search Icon */}
