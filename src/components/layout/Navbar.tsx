@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -22,22 +22,34 @@ import {
   LogOut,
   CreditCard,
   Menu,
-  ChevronRight
+  ChevronRight,
+  Search
 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Logo from "./Logo";
+import SearchModal from "@/components/pwa/SearchModal";
 
 export default function Navbar() {
   // Mock user state - replace with actual auth later
   const isLoggedIn = false;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { href: "/about", label: "About" },
     { href: "/pricing", label: "Pricing" },
     { href: "/catalog", label: "Catalog" },
-    { href: "/search", label: "Search" },
   ];
 
   return (
@@ -45,7 +57,9 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="sticky top-0 z-50 w-full"
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled ? "backdrop-blur-md" : ""
+      }`}
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex h-16 sm:h-20 items-center justify-between">
@@ -206,30 +220,47 @@ export default function Navbar() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              // Not logged in - Login/Signup buttons
-              <div className="flex items-center gap-2">
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              // Not logged in - Login/Signup buttons + Search Icon
+              <div className="flex items-center gap-3">
+                {/* Log In Button - Hidden on mobile */}
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="hidden sm:block">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="text-black border-2 border-gray-300 hover:bg-black/5 hover:border-gray-400 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base h-auto"
+                    className="text-black border-2 border-gray-300 hover:border-gray-900 hover:bg-gray-50 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base h-auto transition-colors duration-200"
                   >
                     Log In
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="hidden sm:block">
+
+                {/* Sign Up Button - Hidden on mobile */}
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="hidden sm:block">
                   <Button
                     size="sm"
-                    className="bg-black text-white hover:bg-gray-800 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base h-auto transition-colors"
+                    className="bg-black text-white hover:bg-gray-800 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base h-auto transition-colors duration-200"
                   >
                     Sign Up
                   </Button>
                 </motion.div>
+
+                {/* Search Icon */}
+                <motion.button
+                  onClick={() => setIsSearchOpen(true)}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="ml-1 hover:opacity-70 transition-opacity duration-200"
+                  aria-label="Search"
+                >
+                  <Search className="h-6 w-6 text-black cursor-pointer" />
+                </motion.button>
               </div>
             )}
           </motion.div>
         </div>
       </div>
+
+      {/* Search Modal */}
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </motion.nav>
   );
 }

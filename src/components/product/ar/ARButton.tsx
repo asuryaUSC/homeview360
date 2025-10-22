@@ -6,9 +6,11 @@ import { Eye, Smartphone, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CatalogItem } from "@/types/catalog";
 import { getDeviceInfo } from "@/components/pwa/DeviceDetection";
+import { isPremiumUser } from "@/utils/premiumCheck";
 import IOSARViewer from "./IOSARViewer";
 import AndroidARViewer from "./AndroidARViewer";
 import DesktopARModal from "./DesktopARModal";
+import AdGateModal from "./AdGateModal";
 
 interface ARButtonProps {
   product: CatalogItem;
@@ -18,9 +20,11 @@ export default function ARButton({ product }: ARButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [showDesktopModal, setShowDesktopModal] = useState(false);
   const [showAndroidViewer, setShowAndroidViewer] = useState(false);
+  const [showAdGate, setShowAdGate] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const deviceInfo = getDeviceInfo();
+  const isPremium = isPremiumUser();
 
   const handleARClick = async () => {
     if (!product.ar_compatible) {
@@ -28,6 +32,17 @@ export default function ARButton({ product }: ARButtonProps) {
       return;
     }
 
+    // Check if user is premium - if not, show ad gate first
+    if (!isPremium) {
+      setShowAdGate(true);
+      return;
+    }
+
+    // Premium users skip ad and go straight to AR
+    launchARExperience();
+  };
+
+  const launchARExperience = async () => {
     setIsLoading(true);
     setError(null);
 
@@ -125,6 +140,15 @@ export default function ARButton({ product }: ARButtonProps) {
           product={product}
           isOpen={showAndroidViewer}
           onClose={() => setShowAndroidViewer(false)}
+        />
+      )}
+
+      {/* Ad Gate Modal for non-premium users */}
+      {showAdGate && (
+        <AdGateModal
+          isOpen={showAdGate}
+          onClose={() => setShowAdGate(false)}
+          onContinue={launchARExperience}
         />
       )}
     </>
