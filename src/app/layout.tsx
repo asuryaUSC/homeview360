@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import PWALayout from "@/components/pwa/PWALayout";
 import Footer from "@/components/layout/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -127,10 +128,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased flex flex-col min-h-screen`}
         suppressHydrationWarning
       >
-        <PWALayout>
-          <div className="flex-1 flex flex-col">{children}</div>
-          <Footer />
-        </PWALayout>
+        <ClerkProvider>
+          <PWALayout>
+            <div className="flex-1 flex flex-col">{children}</div>
+            <Footer />
+          </PWALayout>
+        </ClerkProvider>
       </body>
     </html>
   );
