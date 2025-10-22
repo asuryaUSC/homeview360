@@ -7,11 +7,13 @@ import { getCatalogItems } from "@/lib/catalogData";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { usePWAMode } from "@/hooks/usePWAMode";
 
 export default function CatalogPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isMounted, setIsMounted] = useState(false);
   const itemsPerPage = 12;
+  const { isPWA } = usePWAMode();
 
   // Wait for client mount to avoid hydration mismatch
   useEffect(() => {
@@ -76,9 +78,9 @@ export default function CatalogPage() {
 
   return (
     <div className="min-h-screen relative">
-      <Navbar />
+      {!isPWA && <Navbar />}
 
-      <main className="container mx-auto px-3 sm:px-4 py-8 sm:py-12 md:py-16">
+      <main className={`container mx-auto px-3 sm:px-4 ${isPWA ? 'py-6 sm:py-8' : 'py-8 sm:py-12 md:py-16'}`}>
         {/* Hero Section */}
         <motion.div
           initial={{ y: -20, opacity: 0 }}
