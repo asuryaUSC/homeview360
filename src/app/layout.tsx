@@ -4,6 +4,8 @@ import "./globals.css";
 import PWALayout from "@/components/pwa/PWALayout";
 import Footer from "@/components/layout/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Analytics } from "@vercel/analytics/next";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -128,12 +130,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased flex flex-col min-h-screen`}
         suppressHydrationWarning
       >
+        <GoogleAnalytics />
         <ClerkProvider>
           <PWALayout>
             <div className="flex-1 flex flex-col">{children}</div>
             <Footer />
           </PWALayout>
         </ClerkProvider>
+        <Analytics />
       </body>
     </html>
   );
