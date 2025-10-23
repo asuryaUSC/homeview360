@@ -135,27 +135,53 @@ export default function PricingPage() {
 
       <Navbar />
 
-      <main className="container mx-auto px-3 sm:px-4 py-12 sm:py-16 md:py-20 relative z-10">
+      <main className="container mx-auto px-3 sm:px-4 relative z-10">
         {/* Hero Section */}
-        <motion.div
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center mb-8 sm:mb-10 md:mb-12"
-        >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">
-            Choose Your Plan
-          </h1>
-          <p className="text-sm sm:text-base md:text-lg text-gray-600">
-            Transform your space with the perfect plan for your needs
-          </p>
-        </motion.div>
+        <section className="flex flex-col items-center justify-center relative px-4 pt-12 pb-8 sm:pt-16 sm:pb-4 sm:-mt-8 lg:-mt-12">
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2, type: "spring", stiffness: 200 }}
+            className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full px-4 py-2 sm:px-6 sm:py-3 shadow-lg mb-6"
+          >
+            <span className="text-xs sm:text-sm font-medium text-gray-800">
+              Flexible Plans for Every Creator
+            </span>
+          </motion.div>
 
+          <motion.div
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 100 }}
+            className="text-center max-w-5xl space-y-4 sm:space-y-6 mb-8"
+          >
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight px-2">
+              <span className="bg-gradient-to-r from-gray-900 via-black to-gray-800 bg-clip-text text-transparent">
+                Choose Your
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                Perfect Plan
+              </span>
+            </h1>
+
+            <motion.p
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.7 }}
+              className="text-base sm:text-lg md:text-xl text-gray-800 max-w-2xl mx-auto leading-relaxed font-medium px-4"
+            >
+              Transform your space with unlimited design freedom. Start free, upgrade anytime.
+            </motion.p>
+          </motion.div>
+        </section>
+      
         {/* Billing Toggle */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.9 }}
+          className="mb-8 sm:mb-12"
         >
           <BillingToggle selected={billingPeriod} onChange={setBillingPeriod} />
         </motion.div>
@@ -165,7 +191,7 @@ export default function PricingPage() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto pb-8"
         >
           {pricingTiers.map((tier) => (
             <motion.div key={tier.name} variants={itemVariants}>
@@ -187,7 +213,7 @@ export default function PricingPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.0 }}
-          className="mt-12 sm:mt-16 md:mt-20 text-center px-4"
+          className="mt-10 sm:mt-10 md:mt-10 text-center px-4 pb-16"
         >
           <p className="text-xs sm:text-sm text-gray-600">
             All plans include a 14-day free trial. No credit card required.

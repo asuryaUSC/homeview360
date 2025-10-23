@@ -1,52 +1,55 @@
+"use client";
+
+import { useUser } from '@clerk/nextjs';
+
 /**
  * Premium Status Utility
  *
- * This module provides functions to check if a user has premium access.
- * Currently returns false for all users (everyone sees ads).
+ * This module provides functions to check if a user has premium access
+ * based on their subscription tier stored in Clerk's publicMetadata.
  *
- * TODO: Once Clerk authentication and payment integration is complete,
- * update this function to check actual user subscription status.
- *
- * Future implementation should:
- * 1. Import user data from Clerk
- * 2. Check subscription tier (Free, Premium, Pro)
- * 3. Return true for Premium/Pro users, false for Free users
+ * Subscription tiers:
+ * - 'free': Default tier, sees ads, limited features
+ * - 'premium': $5.99/month, no ads, unlimited features
+ * - 'pro': $14.99/month, professional tools, no ads
  */
 
+export type SubscriptionTier = 'free' | 'premium' | 'pro';
+
 /**
- * Checks if the current user has premium access.
+ * Hook to check if the current user has premium access (Premium or Pro tier).
  *
- * @returns {boolean} True if user is premium (no ads), false otherwise
- *
- * Current behavior: Always returns false (all users see ads)
- *
- * Future implementation example:
- * ```typescript
- * import { useUser } from '@clerk/nextjs';
- *
- * export function isPremiumUser(): boolean {
- *   const { user } = useUser();
- *   if (!user) return false;
- *
- *   const subscriptionTier = user.publicMetadata?.subscriptionTier;
- *   return subscriptionTier === 'premium' || subscriptionTier === 'pro';
- * }
- * ```
+ * @returns {object} Object containing premium status and loading state
  */
-export function isPremiumUser(): boolean {
-  // TODO: Replace with actual Clerk user subscription check
-  // For now, all users are non-premium (see ads)
-  return false;
+export function usePremiumStatus(): {
+  isPremium: boolean;
+  isLoading: boolean;
+  tier: SubscriptionTier;
+} {
+  const { user, isLoaded } = useUser();
+
+  if (!isLoaded) {
+    return { isPremium: false, isLoading: true, tier: 'free' };
+  }
+
+  if (!user) {
+    return { isPremium: false, isLoading: false, tier: 'free' };
+  }
+
+  // Get subscription tier from user's public metadata
+  // This should be set when user subscribes via payment integration
+  const tier = (user.publicMetadata?.subscriptionTier as SubscriptionTier) || 'free';
+  const isPremium = tier === 'premium' || tier === 'pro';
+
+  return { isPremium, isLoading: false, tier };
 }
 
 /**
- * Hook version for use in React components.
- * Can be expanded to include loading states and real-time subscription updates.
+ * Helper function to check if a specific tier is premium or higher.
  *
- * @returns {boolean} True if user is premium
+ * @param tier - The subscription tier to check
+ * @returns True if tier is premium or pro
  */
-export function usePremiumStatus(): boolean {
-  // TODO: Add useUser() from Clerk when authentication is implemented
-  // TODO: Add loading state handling
-  return isPremiumUser();
+export function isPremiumTier(tier: SubscriptionTier): boolean {
+  return tier === 'premium' || tier === 'pro';
 }

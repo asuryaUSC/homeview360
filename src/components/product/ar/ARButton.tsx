@@ -6,7 +6,7 @@ import { Eye, Smartphone, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CatalogItem } from "@/types/catalog";
 import { getDeviceInfo } from "@/components/pwa/DeviceDetection";
-import { isPremiumUser } from "@/utils/premiumCheck";
+import { usePremiumStatus } from "@/utils/premiumCheck";
 import IOSARViewer from "./IOSARViewer";
 import AndroidARViewer from "./AndroidARViewer";
 import DesktopARModal from "./DesktopARModal";
@@ -24,7 +24,7 @@ export default function ARButton({ product }: ARButtonProps) {
   const [error, setError] = useState<string | null>(null);
 
   const deviceInfo = getDeviceInfo();
-  const isPremium = isPremiumUser();
+  const { isPremium } = usePremiumStatus();
 
   const handleARClick = async () => {
     if (!product.ar_compatible) {

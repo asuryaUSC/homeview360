@@ -22,7 +22,7 @@ import SearchModal from "@/components/pwa/SearchModal";
 
 export default function Navbar() {
   // Get actual auth state from Clerk
-  const { isSignedIn, user } = useUser();
+  const { isSignedIn } = useUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);

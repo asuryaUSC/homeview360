@@ -40,24 +40,24 @@ export default function CatalogCard({ item, index = 0 }: CatalogCardProps) {
       variants={cardVariants}
       initial="hidden"
       animate="visible"
-      whileHover={{ y: -6, scale: 1.02 }}
-      transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
+      whileHover={{ y: -4, scale: 1.01 }}
+      transition={{ type: "spring" as const, stiffness: 300, damping: 25 }}
     >
       <Link href={`/catalog/${item.id}`} className="block group">
-        <div className="bg-white border border-gray-200 rounded-lg sm:rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:border-gray-300 transition-all duration-300 h-full flex flex-col">
+        <div className="bg-white/40 backdrop-blur-md border border-white/50 rounded-xl overflow-hidden shadow-md shadow-gray-300/20 hover:shadow-lg hover:shadow-gray-400/25 hover:bg-white/50 transition-all duration-300 h-full flex flex-col">
           {/* Thumbnail */}
-          <div className="relative w-full aspect-square bg-gray-50">
+          <div className="relative w-full aspect-square bg-white/60 overflow-hidden">
             {item.thumbnail ? (
               <Image
                 src={`/${item.thumbnail}`}
                 alt={item.name}
                 fill
-                className="object-cover"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 33vw, 25vw"
               />
             ) : (
               // Placeholder for missing thumbnails
-              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+              <div className="w-full h-full bg-gradient-to-br from-gray-100/80 to-gray-200/80 flex items-center justify-center">
                 <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-400">
                   {getInitials(item.name)}
                 </span>
@@ -66,28 +66,28 @@ export default function CatalogCard({ item, index = 0 }: CatalogCardProps) {
           </div>
 
           {/* Content */}
-          <div className="p-2 sm:p-3 md:p-4 flex-1 flex flex-col">
+          <div className="p-3 sm:p-4 flex-1 flex flex-col">
             {/* Category Badge */}
-            <div className="mb-1 sm:mb-2">
-              <span className="inline-block bg-gray-100 text-gray-600 text-[10px] sm:text-xs px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-md font-medium">
+            <div className="mb-2">
+              <span className="inline-block bg-gray-900/5 backdrop-blur-sm text-gray-700 text-[10px] sm:text-xs px-2 py-1 rounded-md font-medium">
                 {item.category}
               </span>
             </div>
 
             {/* Product Name */}
-            <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 line-clamp-2 mb-1">
+            <h3 className="text-sm sm:text-base font-semibold text-gray-900 line-clamp-2 mb-2">
               {item.name}
             </h3>
 
             {/* Price */}
-            <p className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mt-1 sm:mt-2">
+            <p className="text-lg sm:text-xl font-bold text-gray-900 mt-auto">
               ${item.price}
             </p>
 
             {/* View in AR Link */}
-            <div className="mt-2 sm:mt-3 flex items-center text-xs sm:text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors">
-              <span>View in AR</span>
-              <ArrowRight className="ml-1 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
+            <div className="mt-2 flex items-center text-xs sm:text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">
+              <span>View Details</span>
+              <ArrowRight className="ml-1 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-0.5 transition-transform" />
             </div>
           </div>
         </div>
