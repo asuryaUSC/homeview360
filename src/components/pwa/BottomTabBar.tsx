@@ -16,18 +16,18 @@ interface Tab {
 
 const tabs: Tab[] = [
   {
-    id: "catalog",
-    label: "Catalog",
+    id: "home",
+    label: "Home",
     icon: Home,
-    href: "/catalog",
-    matchPaths: ["/catalog", "/"],
+    href: "/",
+    matchPaths: ["/"],
   },
   {
-    id: "search",
-    label: "Search",
+    id: "catalog",
+    label: "Catalog",
     icon: Search,
-    href: "/search",
-    matchPaths: ["/search"],
+    href: "/catalog",
+    matchPaths: ["/catalog"],
   },
   {
     id: "rooms",
@@ -47,12 +47,12 @@ const tabs: Tab[] = [
 
 export default function BottomTabBar() {
   const pathname = usePathname();
-  const [activeTab, setActiveTab] = useState<string>("catalog");
+  const [activeTab, setActiveTab] = useState<string>("home");
 
   useEffect(() => {
     // Determine active tab based on current pathname
     const currentTab = tabs.find((tab) =>
-      tab.matchPaths.some((path) => pathname.startsWith(path))
+      tab.matchPaths.some((path) => pathname === path || pathname.startsWith(path + "/"))
     );
     if (currentTab) {
       setActiveTab(currentTab.id);
@@ -65,7 +65,7 @@ export default function BottomTabBar() {
   }
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-gray-900/95 backdrop-blur-xl border-t border-gray-800 safe-bottom">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white/70 backdrop-blur-xl border-t border-white/40 shadow-lg shadow-gray-300/20 safe-bottom">
       <div className="flex items-center justify-around h-16 px-2">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -83,11 +83,11 @@ export default function BottomTabBar() {
                 }
               }}
             >
-              {/* Active indicator */}
+              {/* Active indicator background */}
               {isActive && (
                 <motion.div
-                  layoutId="activeTab"
-                  className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-white rounded-full"
+                  layoutId="activeTabBg"
+                  className="absolute inset-x-2 inset-y-1.5 bg-gradient-to-br from-blue-500/15 via-purple-500/10 to-pink-500/15 rounded-2xl"
                   transition={{
                     type: "spring",
                     stiffness: 500,
@@ -107,13 +107,13 @@ export default function BottomTabBar() {
                   stiffness: 400,
                   damping: 17,
                 }}
-                className="mb-1"
+                className="mb-1 relative z-10"
               >
                 <Icon
                   className={`w-6 h-6 transition-colors duration-200 ${
                     isActive
-                      ? "text-white"
-                      : "text-gray-500 group-hover:text-gray-300"
+                      ? "text-purple-600"
+                      : "text-gray-500 group-hover:text-gray-700"
                   }`}
                 />
               </motion.div>
@@ -125,8 +125,8 @@ export default function BottomTabBar() {
                   scale: isActive ? 1 : 0.9,
                 }}
                 transition={{ duration: 0.2 }}
-                className={`text-[10px] font-medium tracking-wide ${
-                  isActive ? "text-white" : "text-gray-500"
+                className={`text-[10px] font-semibold tracking-wide relative z-10 ${
+                  isActive ? "text-purple-600" : "text-gray-600"
                 }`}
               >
                 {tab.label}
@@ -137,7 +137,7 @@ export default function BottomTabBar() {
       </div>
 
       {/* Safe area padding for iOS devices with notch/home indicator */}
-      <div className="h-[env(safe-area-inset-bottom)] bg-gray-900" />
+      <div className="h-[env(safe-area-inset-bottom)] bg-white/70" />
     </nav>
   );
 }
