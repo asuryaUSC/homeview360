@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import PWALayout from "@/components/pwa/PWALayout";
 import Footer from "@/components/layout/Footer";
+import CookieBanner from "@/components/layout/CookieBanner";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/next";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
@@ -147,6 +148,7 @@ export default function RootLayout({
           </PWALayout>
         </ClerkProvider>
         <Analytics />
+        <CookieBanner />
       </body>
     </html>
   );

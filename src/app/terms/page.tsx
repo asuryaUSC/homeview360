@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import { motion } from "framer-motion";
 
 export default function TermsPage() {
-  const lastUpdated = "January 15, 2025";
+  const lastUpdated = "November 10, 2025";
 
   return (
     <div className="min-h-screen">
