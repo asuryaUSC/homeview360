@@ -194,77 +194,6 @@ export default function CatalogPage() {
           </section>
         )}
 
-        {/* SECTION 1: Previously Viewed (Horizontal Scrollable) */}
-        {recentlyViewed.length > 0 && (
-          <section className="mb-12 sm:mb-16">
-            <div className="flex items-center gap-3 mb-4 sm:mb-6">
-              <div className="p-2 bg-blue-500/10 rounded-lg">
-                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
-              </div>
-              <div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
-                  Continue Browsing
-                </h2>
-                <p className="text-xs sm:text-sm text-gray-600">
-                  Pick up where you left off
-                </p>
-              </div>
-            </div>
-
-            {/* Horizontal scrollable carousel */}
-            <div className="relative">
-              <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-                {recentlyViewed.map((item, index) => (
-                  <div
-                    key={item.id}
-                    className="flex-none w-[160px] sm:w-[200px] md:w-[220px] snap-start"
-                  >
-                    <CatalogCard item={item} index={index} />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div className="mt-8 sm:mt-12 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-          </section>
-        )}
-
-        {/* SECTION 2: Recommended For You */}
-        {recommended.length > 0 && (
-          <section className="mb-12 sm:mb-16">
-            <div className="flex items-center gap-3 mb-4 sm:mb-6">
-              <div className="p-2 bg-green-500/10 rounded-lg">
-                <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
-              </div>
-              <div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
-                  Recommended For You
-                </h2>
-                <p className="text-xs sm:text-sm text-gray-600">
-                  Based on your browsing history
-                </p>
-              </div>
-            </div>
-
-            {/* Grid with special highlight styling */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
-              {recommended.map((item, index) => (
-                <div key={item.id} className="relative">
-                  {/* Green glow effect */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-green-400 to-emerald-400 rounded-2xl opacity-20 blur-sm" />
-                  <div className="relative">
-                    <CatalogCard item={item} index={index} />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Divider */}
-            <div className="mt-8 sm:mt-12 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-          </section>
-        )}
-
         {/* Filters (for Browse All section) */}
         <div className="mb-6 sm:mb-8">
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
@@ -391,7 +320,77 @@ export default function CatalogPage() {
           <div className="text-center mb-6 mt-4 sm:mt-6 text-xs sm:text-sm text-gray-700 font-medium">
             Showing {indexOfFirstItem + 1} - {Math.min(indexOfLastItem, browseAllItems.length)} of {browseAllItems.length} items
           </div>
+
+          {/* Divider before personalized sections */}
+          {(recentlyViewed.length > 0 || recommended.length > 0) && (
+            <div className="mt-12 sm:mt-16 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+          )}
         </section>
+
+        {/* SECTION: Previously Viewed (Horizontal Scrollable) */}
+        {recentlyViewed.length > 0 && (
+          <section className="mt-12 sm:mt-16 mb-12 sm:mb-16">
+            <div className="flex items-center gap-3 mb-4 sm:mb-6">
+              <div className="p-2 bg-blue-500/10 rounded-lg">
+                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+              </div>
+              <div>
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
+                  Continue Browsing
+                </h2>
+                <p className="text-xs sm:text-sm text-gray-600">
+                  Pick up where you left off
+                </p>
+              </div>
+            </div>
+
+            {/* Horizontal scrollable carousel */}
+            <div className="relative">
+              <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+                {recentlyViewed.map((item, index) => (
+                  <div
+                    key={item.id}
+                    className="flex-none w-[160px] sm:w-[200px] md:w-[220px] snap-start"
+                  >
+                    <CatalogCard item={item} index={index} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* SECTION: Recommended For You */}
+        {recommended.length > 0 && (
+          <section className="mb-12 sm:mb-16">
+            <div className="flex items-center gap-3 mb-4 sm:mb-6">
+              <div className="p-2 bg-green-500/10 rounded-lg">
+                <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
+              </div>
+              <div>
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
+                  Recommended For You
+                </h2>
+                <p className="text-xs sm:text-sm text-gray-600">
+                  Based on your browsing history
+                </p>
+              </div>
+            </div>
+
+            {/* Grid with special highlight styling */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
+              {recommended.map((item, index) => (
+                <div key={item.id} className="relative">
+                  {/* Green glow effect */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-green-400 to-emerald-400 rounded-2xl opacity-20 blur-sm" />
+                  <div className="relative">
+                    <CatalogCard item={item} index={index} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
       </main>
     </div>
   );
