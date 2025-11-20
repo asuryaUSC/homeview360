@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePWAMode } from "@/hooks/usePWAMode";
+import { useCategoryTracking, useInitializeTracking } from "@/hooks/useTracking";
 
 export default function CatalogPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,10 +18,21 @@ export default function CatalogPage() {
   const itemsPerPage = 12;
   const { isPWA } = usePWAMode();
 
+  // Tracking hooks
+  const { trackCategory } = useCategoryTracking();
+  useInitializeTracking();
+
   // Wait for client mount to avoid hydration mismatch
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  // Track category changes
+  useEffect(() => {
+    if (isMounted && selectedCategory !== "All") {
+      trackCategory(selectedCategory);
+    }
+  }, [selectedCategory, isMounted, trackCategory]);
 
   // Shuffle items for variety - only on client
   const allItems = useMemo(() => {
@@ -272,7 +284,7 @@ export default function CatalogPage() {
         )}
 
         {/* Results Info */}
-        <div className="text-center mt-4 sm:mt-6 text-xs sm:text-sm text-gray-700 font-medium">
+        <div className="text-center mb-6 mt-4 sm:mt-6 text-xs sm:text-sm text-gray-700 font-medium">
           Showing {indexOfFirstItem + 1} - {Math.min(indexOfLastItem, filteredItems.length)} of {filteredItems.length} items
         </div>
       </main>

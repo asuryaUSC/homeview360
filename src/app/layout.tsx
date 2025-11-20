@@ -21,6 +21,15 @@ export const metadata: Metadata = {
   title: "HomeView360",
   description: "Immersive 360° home viewing experience",
   manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/icons/favicon-196.png", sizes: "196x196", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icons/apple-icon-180.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

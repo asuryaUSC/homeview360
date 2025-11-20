@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { CatalogItem } from "@/types/catalog";
 import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
@@ -9,6 +10,8 @@ import ProductDetails from "./ProductDetails";
 import ProductDimensions from "./ProductDimensions";
 import { usePWAMode } from "@/hooks/usePWAMode";
 import ARButton from "./ar/ARButton";
+import { useProductViewTracking } from "@/hooks/useTracking";
+import { trackCategoryView, trackTagViews, trackPriceView } from "@/lib/tracking";
 
 interface ProductPageProps {
   product: CatalogItem;
@@ -16,6 +19,20 @@ interface ProductPageProps {
 
 export default function ProductPage({ product }: ProductPageProps) {
   const { isPWA } = usePWAMode();
+
+  // Track product view with time spent
+  useProductViewTracking(product.id);
+
+  // Track additional product attributes on mount
+  React.useEffect(() => {
+    if (product) {
+      trackCategoryView(product.category);
+      if (product.tags && product.tags.length > 0) {
+        trackTagViews(product.tags);
+      }
+      trackPriceView(product.price);
+    }
+  }, [product]);
 
   return (
     <div className="min-h-screen relative">

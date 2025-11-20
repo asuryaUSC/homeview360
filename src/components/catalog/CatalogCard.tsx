@@ -4,7 +4,9 @@ import { CatalogItem } from "@/types/catalog";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Eye, TrendingUp } from "lucide-react";
+import { useProductInteractionTracking } from "@/hooks/useTracking";
+import { getRecommendationReason } from "@/lib/recommendations";
 
 interface CatalogCardProps {
   item: CatalogItem;
@@ -12,6 +14,12 @@ interface CatalogCardProps {
 }
 
 export default function CatalogCard({ item, index = 0 }: CatalogCardProps) {
+  const { trackProductClick, checkIfViewed } = useProductInteractionTracking();
+
+  // Check if previously viewed
+  const isViewed = checkIfViewed(item.id);
+  const recommendationReason = getRecommendationReason(item);
+
   // Generate initials for placeholder
   const getInitials = (name: string) => {
     const words = name.split(" ");
@@ -43,7 +51,11 @@ export default function CatalogCard({ item, index = 0 }: CatalogCardProps) {
       whileHover={{ y: -4, scale: 1.01 }}
       transition={{ type: "spring" as const, stiffness: 300, damping: 25 }}
     >
-      <Link href={`/catalog/${item.id}`} className="block group">
+      <Link
+        href={`/catalog/${item.id}`}
+        onClick={() => trackProductClick(item)}
+        className="block group"
+      >
         <div className="bg-white/40 backdrop-blur-md border border-white/50 rounded-xl overflow-hidden shadow-md shadow-gray-300/20 hover:shadow-lg hover:shadow-gray-400/25 hover:bg-white/50 transition-all duration-300 h-full flex flex-col">
           {/* Thumbnail */}
           <div className="relative w-full aspect-square bg-white/60 overflow-hidden">
@@ -63,15 +75,28 @@ export default function CatalogCard({ item, index = 0 }: CatalogCardProps) {
                 </span>
               </div>
             )}
+            {/* Viewed badge */}
+            {isViewed && (
+              <div className="absolute top-2 right-2 p-1.5 bg-blue-500/90 backdrop-blur-sm rounded-full shadow-md">
+                <Eye className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />
+              </div>
+            )}
           </div>
 
           {/* Content */}
           <div className="p-3 sm:p-4 flex-1 flex flex-col">
             {/* Category Badge */}
-            <div className="mb-2">
+            <div className="mb-2 flex items-center gap-2 flex-wrap">
               <span className="inline-block bg-gray-900/5 backdrop-blur-sm text-gray-700 text-[10px] sm:text-xs px-2 py-1 rounded-md font-medium">
                 {item.category}
               </span>
+              {/* Recommendation badge */}
+              {recommendationReason && (
+                <span className="inline-flex items-center gap-1 bg-green-500/10 backdrop-blur-sm text-green-700 text-[10px] px-2 py-1 rounded-md font-medium">
+                  <TrendingUp className="w-2.5 h-2.5" />
+                  For you
+                </span>
+              )}
             </div>
 
             {/* Product Name */}

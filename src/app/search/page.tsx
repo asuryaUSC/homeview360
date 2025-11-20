@@ -1,22 +1,32 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Search as SearchIcon, X } from "lucide-react";
+import { Search as SearchIcon, X, TrendingUp, Eye } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { catalogItems } from "@/data/catalog";
+import { getCatalogItems } from "@/lib/catalogData";
+import { useSearchTracking, useProductInteractionTracking } from "@/hooks/useTracking";
+import { boostSearchResults, getRecommendationReason } from "@/lib/recommendations";
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+
+  // Tracking hooks
+  const { trackSearch } = useSearchTracking();
+  const { trackProductClick, checkIfViewed } = useProductInteractionTracking();
+
+  // Get catalog items
+  const catalogItems = getCatalogItems();
 
   const filteredResults = useMemo(() => {
     if (!query.trim()) return [];
 
     const lowercaseQuery = query.toLowerCase();
 
-    return catalogItems
+    // First, filter items based on search query
+    const matchingItems = catalogItems
       .filter((item) => {
         const matchesName = item.name.toLowerCase().includes(lowercaseQuery);
         const matchesCategory = item.category
@@ -37,9 +47,20 @@ export default function SearchPage() {
           matchesTags ||
           matchesDescription
         );
-      })
-      .slice(0, 20); // Limit to 20 results for performance
-  }, [query]);
+      });
+
+    // Then, boost results with recommendation scoring
+    const boostedResults = boostSearchResults(matchingItems, query);
+
+    return boostedResults.slice(0, 20); // Limit to 20 results for performance
+  }, [query, catalogItems]);
+
+  // Track search queries
+  useEffect(() => {
+    if (query.trim()) {
+      trackSearch(query, filteredResults.length);
+    }
+  }, [query, filteredResults.length, trackSearch]);
 
   const handleClearSearch = () => {
     setQuery("");
@@ -144,64 +165,86 @@ export default function SearchPage() {
             animate={{ opacity: 1 }}
             className="grid gap-4"
           >
-            {filteredResults.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <Link
-                  href={`/catalog/${item.id}`}
-                  className="block group"
-                >
-                  <div className="flex gap-4 p-4 bg-gradient-to-br from-gray-800/40 to-gray-800/20 border border-gray-700/50 rounded-2xl hover:border-gray-600 transition-all duration-300 hover:scale-[1.02]">
-                    {/* Thumbnail */}
-                    <div className="relative w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden bg-gray-800">
-                      <Image
-                        src={
-                          // Next/Image expects a string or StaticImport — ensure a string fallback
-                          item.image ?? "/icons/favicon-32.png"
-                        }
-                        alt={item.name}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                    </div>
+{filteredResults.map((item, index) => {
+              const isViewed = checkIfViewed(item.id);
+              const recommendationReason = getRecommendationReason(item);
 
-                    {/* Info */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2 mb-1">
-                        <h3 className="font-semibold text-white group-hover:text-gray-100 transition-colors line-clamp-1">
-                          {item.name}
-                        </h3>
-                        <span className="text-sm font-bold text-white flex-shrink-0">
-                          ${item.price}
-                        </span>
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  <Link
+                    href={`/catalog/${item.id}`}
+                    onClick={() => trackProductClick(item)}
+                    className="block group"
+                  >
+                    <div className="flex gap-4 p-4 bg-gradient-to-br from-gray-800/40 to-gray-800/20 border border-gray-700/50 rounded-2xl hover:border-gray-600 transition-all duration-300 hover:scale-[1.02]">
+                      {/* Thumbnail */}
+                      <div className="relative w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden bg-gray-800">
+                        <Image
+                          src={
+                            // Next/Image expects a string or StaticImport — ensure a string fallback
+                            item.thumbnail ? `/${item.thumbnail}` : "/icons/favicon-32.png"
+                          }
+                          alt={item.name}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                        {/* Viewed badge */}
+                        {isViewed && (
+                          <div className="absolute top-2 left-2 p-1 bg-blue-500/80 backdrop-blur-sm rounded-full">
+                            <Eye className="w-3 h-3 text-white" />
+                          </div>
+                        )}
                       </div>
 
-                      <p className="text-xs text-gray-400 mb-2">
-                        {item.sku} • {item.category}
-                      </p>
-
-                      {/* Tags */}
-                      {item.tags && item.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-1.5">
-                          {item.tags.slice(0, 3).map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-2 py-0.5 bg-gray-700/50 rounded-full text-[10px] text-gray-400"
-                            >
-                              {tag}
-                            </span>
-                          ))}
+                      {/* Info */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start justify-between gap-2 mb-1">
+                          <h3 className="font-semibold text-white group-hover:text-gray-100 transition-colors line-clamp-1">
+                            {item.name}
+                          </h3>
+                          <span className="text-sm font-bold text-white flex-shrink-0">
+                            ${item.price}
+                          </span>
                         </div>
-                      )}
+
+                        <p className="text-xs text-gray-400 mb-2">
+                          {item.sku} • {item.category}
+                        </p>
+
+                        {/* Recommendation reason */}
+                        {recommendationReason && (
+                          <div className="flex items-center gap-1 mb-2">
+                            <TrendingUp className="w-3 h-3 text-green-400" />
+                            <span className="text-[10px] text-green-400">
+                              {recommendationReason}
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Tags */}
+                        {item.tags && item.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-1.5">
+                            {item.tags.slice(0, 3).map((tag) => (
+                              <span
+                                key={tag}
+                                className="px-2 py-0.5 bg-gray-700/50 rounded-full text-[10px] text-gray-400"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </motion.div>
         ) : (
           /* No Results */
