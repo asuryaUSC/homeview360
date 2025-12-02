@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import PWALayout from "@/components/pwa/PWALayout";
 import Footer from "@/components/layout/Footer";
-import CookieBanner from "@/components/layout/CookieBanner";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/next";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
@@ -22,15 +21,6 @@ export const metadata: Metadata = {
   title: "HomeView360",
   description: "Immersive 360° home viewing experience",
   manifest: "/manifest.json",
-  icons: {
-    icon: [
-      { url: "/favicon.png", type: "image/png" },
-      { url: "/icons/favicon-196.png", sizes: "196x196", type: "image/png" },
-    ],
-    apple: [
-      { url: "/icons/apple-icon-180.png", sizes: "180x180", type: "image/png" },
-    ],
-  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -70,8 +60,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Adsense */}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8074055775122396"
-     crossOrigin="anonymous"></script>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8074055775122396"
+          crossOrigin="anonymous"
+        ></script>
 
         {/* PWA Meta Tags */}
         <meta name="application-name" content="HomeView360" />
@@ -137,13 +130,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased flex flex-col min-h-screen`}
         suppressHydrationWarning
       >
-        <GoogleAnalytics />
+        <ClerkProvider>
           <PWALayout>
             <div className="flex-1 flex flex-col">{children}</div>
             <Footer />
           </PWALayout>
+        </ClerkProvider>
         <Analytics />
-        <CookieBanner />
       </body>
     </html>
   );
