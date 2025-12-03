@@ -10,7 +10,11 @@ import {
   getTopTags,
   getAveragePriceRange,
   hasViewedProduct,
-  StorageManager
+  getViewedProductIds,
+  StorageManager,
+  getSearchKeywords,
+  getRecencyWeightedCategories,
+  getRecencyWeightedTags,
 } from './tracking';
 
 // Global popularity data (will be calculated from all items)
@@ -36,6 +40,120 @@ function filterGenericTags(tags: string[]): string[] {
   return tags.filter(tag =>
     !GENERIC_TAGS.includes(tag.toLowerCase())
   );
+}
+
+/**
+ * Diversity filter interface
+ */
+interface ScoredItem {
+  item: CatalogItem;
+  score: number;
+}
+
+/**
+ * Apply diversity filter to ensure varied recommendations
+ */
+function applyDiversityFilter(
+  scoredItems: ScoredItem[],
+  limit: number,
+  maxPerCategory: number
+): CatalogItem[] {
+  const selected: CatalogItem[] = [];
+  const categoryCounts = new Map<string, number>();
+
+  for (const { item } of scoredItems) {
+    const category = item.category;
+    const currentCount = categoryCounts.get(category) || 0;
+
+    // Check if adding this item would violate diversity constraint
+    if (currentCount < maxPerCategory) {
+      selected.push(item);
+      categoryCounts.set(category, currentCount + 1);
+
+      // Stop when we have enough items
+      if (selected.length >= limit) {
+        break;
+      }
+    }
+  }
+
+  return selected;
+}
+
+/**
+ * Calculate search relevance boost
+ */
+function calculateSearchRelevanceScore(item: CatalogItem): number {
+  const searchData = getSearchKeywords(20);
+
+  if (searchData.totalSearches === 0) return 0;
+
+  let score = 0;
+  const { keywords, totalSearches } = searchData;
+
+  // Check if item tags match search keywords
+  if (item.tags) {
+    item.tags.forEach(tag => {
+      const tagLower = tag.toLowerCase();
+      if (keywords[tagLower]) {
+        score += (keywords[tagLower] / totalSearches) * 0.5;
+      }
+    });
+  }
+
+  // Check if category matches search keywords
+  const categoryLower = item.category.toLowerCase();
+  if (keywords[categoryLower]) {
+    score += (keywords[categoryLower] / totalSearches) * 0.5;
+  }
+
+  // Cap at maximum contribution (13% of total score)
+  return Math.min(score, 0.13);
+}
+
+/**
+ * Calculate engagement boost based on time spent patterns
+ */
+function calculateEngagementBoost(item: CatalogItem): number {
+  const data = StorageManager.getData();
+
+  // Calculate average time spent on viewed products
+  const viewsWithTime = data.productViews.filter(v => v.timeSpent && v.timeSpent > 10);
+
+  if (viewsWithTime.length === 0) return 0;
+
+  // Calculate global average time spent
+  const avgTime = viewsWithTime.reduce((sum, v) => sum + (v.timeSpent || 0), 0) / viewsWithTime.length;
+
+  // Get engagement multiplier for average time
+  let multiplier = 1.0;
+  if (avgTime < 30) multiplier = 1.02;
+  else if (avgTime < 60) multiplier = 1.05;
+  else if (avgTime < 120) multiplier = 1.08;
+  else multiplier = 1.12;
+
+  // Apply boost to matching categories/tags
+  let boost = 0;
+
+  // Boost if item matches highly-engaged categories
+  const topCategories = getTopCategories(3);
+  if (topCategories.includes(item.category)) {
+    boost += 0.06 * (multiplier - 1.0) / 0.12; // Scale to 0-0.06
+  }
+
+  // Boost if item matches highly-engaged tags
+  const topTags = getTopTags(15);
+  if (item.tags) {
+    const matchingTags = item.tags.filter(tag =>
+      topTags.some(topTag => topTag.toLowerCase() === tag.toLowerCase())
+    );
+    if (matchingTags.length > 0) {
+      boost += 0.06 * (multiplier - 1.0) / 0.12; // Scale to 0-0.06
+    }
+  }
+
+  // Cap at maximum contribution (12% of total score)
+  return Math.min(boost, 0.12);
 }
 
 // In-memory popularity tracking (could be moved to backend later)
@@ -72,57 +190,51 @@ function getPopularityScore(productId: string): number {
 
 /**
  * Calculate personalized score based on user preferences
+ * Enhanced with recency weighting, engagement, and search relevance
  */
 function getPersonalizedScore(item: CatalogItem): number {
   let score = 0;
 
-  const topCategories = getTopCategories(3);
-  const topTags = getTopTags(15);
+  // Use recency-weighted preferences
+  const topCategories = getRecencyWeightedCategories(3);
+  const topTags = getRecencyWeightedTags(15);
   const priceRange = getAveragePriceRange();
-  const data = StorageManager.getData();
 
   // Filter out generic tags for meaningful matching
   const filteredUserTags = filterGenericTags(topTags);
   const filteredItemTags = item.tags ? filterGenericTags(item.tags) : [];
 
-  // STRONG Category/Type matching (weight: 0.5 - INCREASED)
-  // If user views chairs, strongly recommend more chairs
+  // Category/Type matching (weight: 0.25 - adjusted from 0.45)
   if (topCategories.includes(item.category)) {
     const categoryRank = topCategories.indexOf(item.category);
-    score += (3 - categoryRank) * 0.15; // 0.45 for #1, 0.30 for #2, 0.15 for #3
+    score += (3 - categoryRank) * 0.08; // 0.24 for #1, 0.16 for #2, 0.08 for #3
   }
 
-  // Same type bonus (seating, tables, lighting, etc.)
-  // Get types from viewed items
-  if (data.productViews.length > 0) {
-    // We'll use a simple heuristic: if item.type matches user's most viewed type
-    // For now, give bonus if same category was viewed (proxy for type)
-    if (topCategories.includes(item.category)) {
-      score += 0.15; // Extra boost for same category
-    }
-  }
-
-  // Style Tag similarity (weight: 0.3)
-  // Require at least 2 matching style tags (not generic tags)
+  // Style Tag similarity (weight: 0.20 - adjusted from 0.30)
   if (filteredItemTags.length > 0 && filteredUserTags.length > 0) {
     const matchingTags = filteredItemTags.filter(tag =>
       filteredUserTags.some(userTag => userTag.toLowerCase() === tag.toLowerCase())
     );
 
     if (matchingTags.length >= 2) {
-      // At least 2 style matches required
       const tagScore = matchingTags.length / Math.max(filteredItemTags.length, filteredUserTags.length, 1);
-      score += tagScore * 0.3;
+      score += tagScore * 0.20;
     }
   }
 
-  // Price similarity (weight: 0.2)
+  // Price similarity (weight: 0.15 - adjusted from 0.20)
   if (priceRange) {
     const priceDiff = Math.abs(item.price - priceRange.avg);
     const priceRange_spread = Math.max(priceRange.max - priceRange.min, 100);
     const priceSimilarity = Math.max(0, 1 - (priceDiff / priceRange_spread));
-    score += priceSimilarity * 0.2;
+    score += priceSimilarity * 0.15;
   }
+
+  // NEW: Engagement boost (weight: 0.12)
+  score += calculateEngagementBoost(item);
+
+  // NEW: Search relevance (weight: 0.13)
+  score += calculateSearchRelevanceScore(item);
 
   return score;
 }
@@ -232,6 +344,7 @@ export function getRecommendedItems(
 
 /**
  * Get "similar items" based on a reference item
+ * Now with diversity filtering
  */
 export function getSimilarItems(
   referenceItem: CatalogItem,
@@ -270,12 +383,12 @@ export function getSimilarItems(
         similarityScore += (0.5 - priceRatio) * 0.1;
       }
 
-      return { item, similarityScore };
+      return { item, score: similarityScore };
     })
-    .sort((a, b) => b.similarityScore - a.similarityScore)
-    .slice(0, limit);
+    .sort((a, b) => b.score - a.score);
 
-  return scoredItems.map(s => s.item);
+  // Apply diversity filter: max 3 items per category
+  return applyDiversityFilter(scoredItems, limit, 3);
 }
 
 /**
@@ -287,6 +400,9 @@ export function isRecommendedForUser(item: CatalogItem): boolean {
   const data = StorageManager.getData();
   // Require at least 3 product views before showing recommendations
   if (data.productViews.length < 3) return false;
+
+  // Don't recommend items the user already viewed
+  if (hasViewedProduct(item.id)) return false;
 
   const score = calculateRecommendationScore(item);
   // Stricter threshold: only truly good matches
@@ -332,6 +448,7 @@ export function getRecommendationReason(item: CatalogItem): string | null {
 
 /**
  * Get top N recommended items (limited to 4-5 max)
+ * Now with diversity filtering
  */
 export function getTopRecommendations(
   items: CatalogItem[],
@@ -340,21 +457,30 @@ export function getTopRecommendations(
   if (isNewUser()) return [];
 
   const data = StorageManager.getData();
-  if (data.productViews.length < 3) return [];
+  if (data.productViews.length < 1) return [];
 
-  // Filter to only recommended items
-  const recommended = items.filter(item => isRecommendedForUser(item));
+  const viewedIds = new Set(getViewedProductIds());
 
-  // Sort by score
-  const scored = recommended.map(item => ({
+  // Score all items up front
+  const scoredAll = items.map(item => ({
     item,
     score: calculateRecommendationScore(item)
-  }));
+  })).sort((a, b) => b.score - a.score);
 
-  scored.sort((a, b) => b.score - a.score);
+  // Primary: items that clear recommendation threshold and aren't viewed
+  const primary = scoredAll.filter(({ item, score }) =>
+    !viewedIds.has(item.id) && score > 0.6 && isRecommendedForUser(item)
+  );
 
-  // Return top N (max 5)
-  return scored.slice(0, Math.min(limit, 5)).map(s => s.item);
+  // Sort by score
+  // Apply diversity filter: max 2 items per category in top 5
+  const topPrimary = applyDiversityFilter(primary, Math.min(limit, 5), 2);
+
+  if (topPrimary.length > 0) return topPrimary;
+
+  // Fallback: top scored non-viewed items even if below threshold
+  const fallbackCandidates = scoredAll.filter(({ item }) => !viewedIds.has(item.id));
+  return applyDiversityFilter(fallbackCandidates, Math.min(limit, 5), 2);
 }
 
 /**

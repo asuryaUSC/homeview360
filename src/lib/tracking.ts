@@ -29,6 +29,25 @@ const DATA_RETENTION_DAYS = 90;
 const COOKIE_NAME = 'homeview360_session';
 const STORAGE_KEY = 'homeview360_tracking';
 
+// Recency decay weights
+const RECENCY_WEIGHTS = {
+  WEEK_1: 1.0,    // 0-7 days
+  WEEK_4: 0.8,    // 8-30 days
+  WEEK_8: 0.5,    // 31-60 days
+  WEEK_12: 0.3,   // 61-90 days
+};
+
+// Engagement multipliers based on time spent
+const ENGAGEMENT_MULTIPLIERS = {
+  BRIEF: 1.05,      // 10-30s
+  MODERATE: 1.10,   // 30-60s
+  STRONG: 1.15,     // 60-120s
+  VERY_STRONG: 1.20 // 120s+
+};
+
+// Stop words for search keyword extraction
+const STOP_WORDS = ['the', 'a', 'an', 'for', 'with', 'in', 'on', 'at', 'to', 'from'];
+
 /**
  * Cookie management utilities
  */
@@ -163,6 +182,31 @@ export const StorageManager = {
     localStorage.removeItem(STORAGE_KEY);
   }
 };
+
+/**
+ * Calculate recency weight for a timestamp
+ */
+function calculateRecencyWeight(timestamp: number): number {
+  const ageMs = Date.now() - timestamp;
+  const ageDays = ageMs / (1000 * 60 * 60 * 24);
+
+  if (ageDays <= 7) return RECENCY_WEIGHTS.WEEK_1;
+  if (ageDays <= 30) return RECENCY_WEIGHTS.WEEK_4;
+  if (ageDays <= 60) return RECENCY_WEIGHTS.WEEK_8;
+  if (ageDays <= 90) return RECENCY_WEIGHTS.WEEK_12;
+  return 0;
+}
+
+/**
+ * Calculate engagement multiplier based on time spent
+ */
+function getEngagementMultiplier(timeSpent: number): number {
+  if (timeSpent < 10) return 1.0;
+  if (timeSpent < 30) return ENGAGEMENT_MULTIPLIERS.BRIEF;
+  if (timeSpent < 60) return ENGAGEMENT_MULTIPLIERS.MODERATE;
+  if (timeSpent < 120) return ENGAGEMENT_MULTIPLIERS.STRONG;
+  return ENGAGEMENT_MULTIPLIERS.VERY_STRONG;
+}
 
 /**
  * Track a product view
@@ -319,4 +363,108 @@ export function isNewUser(): boolean {
 export function getInteractionCount(): number {
   const data = StorageManager.getData();
   return data.productViews.length + data.searchQueries.length;
+}
+
+/**
+ * Extract keywords from recent search queries
+ */
+export function getSearchKeywords(limit: number = 20): {
+  keywords: Record<string, number>;
+  totalSearches: number;
+} {
+  const data = StorageManager.getData();
+  const keywords: Record<string, number> = {};
+
+  // Get recent searches
+  const recentSearches = data.searchQueries.slice(-limit);
+
+  recentSearches.forEach(search => {
+    const words = search.query
+      .toLowerCase()
+      .split(/[\s,\-_]+/)
+      .filter(word => word.length > 2 && !STOP_WORDS.includes(word));
+
+    words.forEach(word => {
+      keywords[word] = (keywords[word] || 0) + 1;
+    });
+  });
+
+  return {
+    keywords,
+    totalSearches: recentSearches.length
+  };
+}
+
+/**
+ * Get top categories weighted by recency
+ */
+export function getRecencyWeightedCategories(limit: number = 3): string[] {
+  const data = StorageManager.getData();
+
+  // For MVP: use existing category preferences with global recency adjustment
+  // Calculate average timestamp of all product views
+  const avgTimestamp = data.productViews.length > 0
+    ? data.productViews.reduce((sum, v) => sum + v.timestamp, 0) / data.productViews.length
+    : Date.now();
+
+  const globalRecency = calculateRecencyWeight(avgTimestamp);
+
+  return Object.entries(data.categoryPreferences)
+    .map(([cat, count]) => ({ cat, weighted: count * globalRecency }))
+    .sort((a, b) => b.weighted - a.weighted)
+    .slice(0, limit)
+    .map(x => x.cat);
+}
+
+/**
+ * Get top tags weighted by recency
+ */
+export function getRecencyWeightedTags(limit: number = 15): string[] {
+  const data = StorageManager.getData();
+
+  // Similar to categories - use global recency for MVP
+  const avgTimestamp = data.productViews.length > 0
+    ? data.productViews.reduce((sum, v) => sum + v.timestamp, 0) / data.productViews.length
+    : Date.now();
+
+  const globalRecency = calculateRecencyWeight(avgTimestamp);
+
+  return Object.entries(data.tagPreferences)
+    .map(([tag, count]) => ({ tag, weighted: count * globalRecency }))
+    .sort((a, b) => b.weighted - a.weighted)
+    .slice(0, limit)
+    .map(x => x.tag);
+}
+
+/**
+ * Get average time spent per category/tag for engagement weighting
+ * Returns global engagement stats that can be used as multipliers
+ */
+export function getEngagementStats(): {
+  avgTimeSpent: number;
+  engagementMultiplier: number;
+} {
+  const data = StorageManager.getData();
+
+  // Calculate average time spent (for products that have timeSpent tracked)
+  const viewsWithTime = data.productViews.filter(v => v.timeSpent && v.timeSpent > 0);
+
+  if (viewsWithTime.length === 0) {
+    return {
+      avgTimeSpent: 0,
+      engagementMultiplier: 1.0
+    };
+  }
+
+  // Calculate global average time spent
+  const totalTime = viewsWithTime.reduce((sum, v) => sum + (v.timeSpent || 0), 0);
+  const avgTime = totalTime / viewsWithTime.length;
+
+  // Get engagement multiplier for average time
+  const multiplier = getEngagementMultiplier(avgTime);
+
+  return {
+    avgTimeSpent: avgTime,
+    engagementMultiplier: multiplier
+  };
 }

@@ -4,9 +4,10 @@ import "./globals.css";
 import PWALayout from "@/components/pwa/PWALayout";
 import Footer from "@/components/layout/Footer";
 import CookieBanner from "@/components/layout/CookieBanner";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/next";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import ClerkAppProvider from "@/components/providers/ClerkAppProvider";
+// cspell:ignore nextjs
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,7 +62,7 @@ export const viewport = {
   themeColor: "#ffffff",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -138,10 +139,12 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <GoogleAnalytics />
+        <ClerkAppProvider>
           <PWALayout>
             <div className="flex-1 flex flex-col">{children}</div>
             <Footer />
           </PWALayout>
+        </ClerkAppProvider>
         <Analytics />
         <CookieBanner />
       </body>

@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { CatalogItem } from "@/types/catalog";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -15,9 +16,12 @@ interface CatalogCardProps {
 
 export default function CatalogCard({ item, index = 0 }: CatalogCardProps) {
   const { trackProductClick, checkIfViewed } = useProductInteractionTracking();
+  const [isViewed, setIsViewed] = React.useState(false);
 
-  // Check if previously viewed
-  const isViewed = checkIfViewed(item.id);
+  // Avoid hydration mismatch by resolving viewed status after mount
+  React.useEffect(() => {
+    setIsViewed(checkIfViewed(item.id));
+  }, [checkIfViewed, item.id]);
   const recommendationReason = getRecommendationReason(item);
 
   // Generate initials for placeholder
