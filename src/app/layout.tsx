@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   icons: {
     icon: [
-      { url: "/favicon.png", type: "image/png" },
+      { url: "/logo.png", type: "image/png" },
       { url: "/icons/favicon-196.png", sizes: "196x196", type: "image/png" },
     ],
     apple: [
@@ -88,7 +88,7 @@ export default async function RootLayout({
         <meta name="admaven-placement" content="Bqja6pdnF" />
 
         {/* Generated Icons */}
-        <link rel="icon" type="image/png" sizes="196x196" href="/icons/favicon-196.png" />
+        <link rel="icon" type="image/png" href="/logo.png" />
         <link rel="apple-touch-icon" href="/icons/apple-icon-180.png" />
 
         {/* iOS Splash Screens (generated) */}
