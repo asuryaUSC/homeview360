@@ -363,31 +363,26 @@ export default function CatalogPage() {
         {/* SECTION: Recommended For You */}
         {recommended.length > 0 && (
           <section className="mb-12 sm:mb-16">
-            <div className="flex items-center gap-3 mb-4 sm:mb-6">
-              <div className="p-2 bg-green-500/10 rounded-lg">
-                <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
-              </div>
-              <div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
-                  Recommended For You
-                </h2>
-                <p className="text-xs sm:text-sm text-gray-600">
-                  Based on your browsing history
-                </p>
+            <div className="flex items-center gap-2 mb-4 sm:mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-emerald-100 to-green-50 border border-emerald-200 text-[11px] sm:text-xs font-semibold text-emerald-700 shadow-sm">
+                <TrendingUp className="w-4 h-4" />
+                Recommended for you
               </div>
             </div>
 
-            {/* Grid with special highlight styling */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
-              {recommended.map((item, index) => (
-                <div key={item.id} className="relative">
-                  {/* Green glow effect */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-green-400 to-emerald-400 rounded-2xl opacity-20 blur-sm" />
-                  <div className="relative">
-                    <CatalogCard item={item} index={index} />
-                  </div>
+            <div className="-mx-3 sm:-mx-4 lg:-mx-0">
+              <div className="overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                <div className="flex gap-3 sm:gap-4 lg:gap-5 px-3 sm:px-4 lg:px-0 snap-x snap-mandatory">
+                  {recommended.map((item, index) => (
+                    <div
+                      key={item.id}
+                      className="snap-start w-[180px] sm:w-[200px] lg:w-[220px]"
+                    >
+                      <CatalogCard item={item} index={index} />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </section>
         )}

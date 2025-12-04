@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
-const AD_BASE = "/assets/ads/";
+const AD_BASE = "/assets/promo/";
 const MOCK_ADS = ["ad1.mp4", "ad2.mp4", "ad3.mp4", "ad4.mp4"].map(
   (file) => `${AD_BASE}${file}`
 );
