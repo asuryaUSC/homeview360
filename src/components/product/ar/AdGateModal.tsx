@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import {
@@ -12,12 +12,10 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
-const MOCK_ADS = [
-  "/assets/ads/ad1.mp4",
-  "/assets/ads/ad2.mp4",
-  "/assets/ads/ad3.mp4",
-  "/assets/ads/ad4.mp4",
-];
+const AD_BASE = "/assets/ads/";
+const MOCK_ADS = ["ad1.mp4", "ad2.mp4", "ad3.mp4", "ad4.mp4"].map(
+  (file) => `${AD_BASE}${file}`
+);
 
 interface AdGateModalProps {
   isOpen: boolean;
@@ -39,10 +37,9 @@ export default function AdGateModal({
   const [forceControls, setForceControls] = useState(false);
   const fallbackVideoRef = useRef<HTMLVideoElement | null>(null);
 
-  const selectFallbackAd = () => {
-    const pick = MOCK_ADS[Math.floor(Math.random() * MOCK_ADS.length)];
-    return typeof window !== "undefined" ? new URL(pick, window.location.origin).toString() : pick;
-  };
+  const selectFallbackAd = useCallback(() => {
+    return MOCK_ADS[Math.floor(Math.random() * MOCK_ADS.length)];
+  }, []);
 
   const getFallbackLink = (src: string) =>
     src.includes("ad4")
@@ -118,7 +115,7 @@ export default function AdGateModal({
         scriptLoadedRef.current = false;
       };
     }
-  }, [isOpen]);
+  }, [isOpen, selectFallbackAd]);
 
   useEffect(() => {
     if (!showFallback) return;
@@ -204,10 +201,19 @@ export default function AdGateModal({
                     muted
                     loop
                     playsInline
-                    preload="auto"
+                    preload="metadata"
+                    crossOrigin="anonymous"
                     onError={() => setFallbackAd(selectFallbackAd())}
                     controls={forceControls}
                     controlsList="nodownload"
+                    onLoadedData={() => {
+                      if (fallbackVideoRef.current) {
+                        const playPromise = fallbackVideoRef.current.play();
+                        if (playPromise && typeof playPromise.catch === "function") {
+                          playPromise.catch(() => setForceControls(true));
+                        }
+                      }
+                    }}
                   />
                   <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
