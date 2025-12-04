@@ -10,8 +10,8 @@ interface BillingToggleProps {
 export default function BillingToggle({ selected, onChange }: BillingToggleProps) {
   const options = [
     { value: "monthly" as const, label: "Monthly", savings: null },
-    { value: "yearly" as const, label: "Yearly", savings: "15%" },
-    { value: "threeYear" as const, label: "3 Years", savings: "30%" },
+    // { value: "yearly" as const, label: "Yearly", savings: "15%" },
+    // { value: "threeYear" as const, label: "3 Years", savings: "30%" },
   ];
 
   return (

@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { motion } from "framer-motion";
+import { useClerk, useUser } from "@clerk/nextjs";
 
 export interface PricingPeriod {
   monthly: number;
@@ -26,6 +27,7 @@ interface PricingCardProps {
   buttonText: string;
   billingPeriod: "monthly" | "yearly" | "threeYear";
   hasAds?: boolean;
+  planId?: string; // Clerk Plan ID
 }
 
 export default function PricingCard({
@@ -36,7 +38,23 @@ export default function PricingCard({
   highlighted = false,
   buttonText,
   billingPeriod,
+  planId,
 }: PricingCardProps) {
+  const isFree = pricing.monthly === 0;
+  const { openUserProfile, redirectToSignIn } = useClerk();
+  const { isSignedIn } = useUser();
+
+  const handleSubscribe = () => {
+    // Redirect to Clerk hosted sign-in if not authenticated
+    if (!isSignedIn) {
+      redirectToSignIn({ redirectUrl: '/pricing' });
+      return;
+    }
+    
+    // Open Clerk user profile billing page
+    openUserProfile();
+  };
+
   // Calculate current price and savings
   const getCurrentPrice = () => {
     if (billingPeriod === "monthly") return pricing.monthly;
@@ -191,22 +209,38 @@ export default function PricingCard({
             whileTap={{ scale: 0.97 }}
             whileHover={{ scale: 1.02 }}
           >
-            <Button
-              className={`w-full py-4 sm:py-6 text-sm sm:text-base font-semibold relative overflow-hidden group transition-all duration-300 border ${
-                highlighted
-                  ? "bg-gradient-to-r from-blue-500/90 to-purple-500/90 backdrop-blur-sm text-white hover:from-blue-600 hover:to-purple-600 border-white/40 shadow-lg shadow-blue-300/40 hover:shadow-xl hover:shadow-blue-400/50"
-                  : name === "Pro"
-                  ? "bg-gradient-to-r from-purple-500/90 to-pink-500/90 backdrop-blur-sm text-white hover:from-purple-600 hover:to-pink-600 border-white/40 shadow-lg shadow-purple-300/40 hover:shadow-xl hover:shadow-purple-400/50"
-                  : "bg-white/70 backdrop-blur-sm text-gray-900 border-gray-300/60 hover:bg-white/90 hover:border-gray-400/60 shadow-md hover:shadow-lg"
-              }`}
-            >
-              {/* Shimmer effect for all buttons */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full"
-                transition={{ duration: 0.7, ease: "easeInOut" }}
-              />
-              <span className="relative z-10">{buttonText}</span>
-            </Button>
+            {isFree ? (
+              <Button
+                className="w-full py-4 sm:py-6 text-sm sm:text-base font-semibold relative overflow-hidden group transition-all duration-300 border bg-white/70 backdrop-blur-sm text-gray-900 border-gray-300/60 hover:bg-white/90 hover:border-gray-400/60 shadow-md hover:shadow-lg"
+              >
+                <span className="relative z-10">{buttonText}</span>
+              </Button>
+            ) : planId ? (
+              <Button
+                onClick={handleSubscribe}
+                className={`w-full py-4 sm:py-6 text-sm sm:text-base font-semibold relative overflow-hidden group transition-all duration-300 border ${
+                  highlighted
+                    ? "bg-gradient-to-r from-blue-500/90 to-purple-500/90 backdrop-blur-sm text-white hover:from-blue-600 hover:to-purple-600 border-white/40 shadow-lg shadow-blue-300/40 hover:shadow-xl hover:shadow-blue-400/50"
+                    : name === "Pro"
+                    ? "bg-gradient-to-r from-purple-500/90 to-pink-500/90 backdrop-blur-sm text-white hover:from-purple-600 hover:to-pink-600 border-white/40 shadow-lg shadow-purple-300/40 hover:shadow-xl hover:shadow-purple-400/50"
+                    : "bg-white/70 backdrop-blur-sm text-gray-900 border-gray-300/60 hover:bg-white/90 hover:border-gray-400/60 shadow-md hover:shadow-lg"
+                }`}
+              >
+                <span className="relative z-10">{buttonText}</span>
+              </Button>
+            ) : (
+              <Button
+                className={`w-full py-4 sm:py-6 text-sm sm:text-base font-semibold relative overflow-hidden group transition-all duration-300 border ${
+                  highlighted
+                    ? "bg-gradient-to-r from-blue-500/90 to-purple-500/90 backdrop-blur-sm text-white hover:from-blue-600 hover:to-purple-600 border-white/40 shadow-lg shadow-blue-300/40 hover:shadow-xl hover:shadow-blue-400/50"
+                    : name === "Pro"
+                    ? "bg-gradient-to-r from-purple-500/90 to-pink-500/90 backdrop-blur-sm text-white hover:from-purple-600 hover:to-pink-600 border-white/40 shadow-lg shadow-purple-300/40 hover:shadow-xl hover:shadow-purple-400/50"
+                    : "bg-white/70 backdrop-blur-sm text-gray-900 border-gray-300/60 hover:bg-white/90 hover:border-gray-400/60 shadow-md hover:shadow-lg"
+                }`}
+              >
+                <span className="relative z-10">{buttonText}</span>
+              </Button>
+            )}
           </motion.div>
         </CardFooter>
       </Card>
