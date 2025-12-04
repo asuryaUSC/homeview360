@@ -73,21 +73,23 @@ export default function HomePage() {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               className="w-full sm:w-auto"
             >
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-full sm:w-auto bg-white/80 backdrop-blur-sm border-2 border-gray-300 text-black hover:bg-white hover:border-gray-400 px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-              >
-                {/* Shimmer effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-200/50 to-transparent -translate-x-full group-hover:translate-x-full"
-                  transition={{ duration: 0.6 }}
-                />
+              <Link href="/catalog">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto bg-white/80 backdrop-blur-sm border-2 border-gray-300 text-black hover:bg-white hover:border-gray-400 px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                >
+                  {/* Shimmer effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-200/50 to-transparent -translate-x-full group-hover:translate-x-full"
+                    transition={{ duration: 0.6 }}
+                  />
 
-                <Globe className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                Use Web App
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-              </Button>
+                  <Globe className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  Use Web App
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
 
