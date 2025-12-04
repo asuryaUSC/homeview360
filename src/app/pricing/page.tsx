@@ -30,7 +30,6 @@ export default function PricingPage() {
       ] as FeatureCategory[],
       buttonText: "Get Started Free",
       highlighted: false,
-      planId: "free_user", // Clerk Free Plan ID
     },
     {
       name: "Premium",
@@ -40,7 +39,6 @@ export default function PricingPage() {
         threeYear: 149.99,
       } as PricingPeriod,
       description: "Unlock the full creative experience with unlimited design freedom — ad-free.",
-      planId: "premium", // Clerk Premium Plan ID
       features: [
         {
           category: "Core Features",
@@ -104,7 +102,6 @@ export default function PricingPage() {
       ] as FeatureCategory[],
       buttonText: "Start Free Trial",
       highlighted: false,
-      planId: "pro_plan", // Clerk Pro Plan ID
     },
   ];
 
@@ -206,7 +203,6 @@ export default function PricingPage() {
                 buttonText={tier.buttonText}
                 highlighted={tier.highlighted}
                 billingPeriod={billingPeriod}
-                planId={tier.planId}
               />
             </motion.div>
           ))}

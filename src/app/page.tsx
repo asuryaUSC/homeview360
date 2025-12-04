@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import PWAInstallButton from "@/components/pwa/PWAInstallButton";
 import { ArrowRight, Globe } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function HomePage() {
   return (

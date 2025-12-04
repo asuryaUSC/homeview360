@@ -27,7 +27,6 @@ interface PricingCardProps {
   buttonText: string;
   billingPeriod: "monthly" | "yearly" | "threeYear";
   hasAds?: boolean;
-  planId?: string; // Clerk Plan ID
 }
 
 export default function PricingCard({
@@ -38,7 +37,6 @@ export default function PricingCard({
   highlighted = false,
   buttonText,
   billingPeriod,
-  planId,
 }: PricingCardProps) {
   const isFree = pricing.monthly === 0;
   const { openUserProfile, redirectToSignIn } = useClerk();
