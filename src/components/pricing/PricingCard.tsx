@@ -209,38 +209,20 @@ export default function PricingCard({
             whileTap={{ scale: 0.97 }}
             whileHover={{ scale: 1.02 }}
           >
-            {isFree ? (
-              <Button
-                className="w-full py-4 sm:py-6 text-sm sm:text-base font-semibold relative overflow-hidden group transition-all duration-300 border bg-white/70 backdrop-blur-sm text-gray-900 border-gray-300/60 hover:bg-white/90 hover:border-gray-400/60 shadow-md hover:shadow-lg"
-              >
-                <span className="relative z-10">{buttonText}</span>
-              </Button>
-            ) : planId ? (
-              <Button
-                onClick={handleSubscribe}
-                className={`w-full py-4 sm:py-6 text-sm sm:text-base font-semibold relative overflow-hidden group transition-all duration-300 border ${
-                  highlighted
-                    ? "bg-gradient-to-r from-blue-500/90 to-purple-500/90 backdrop-blur-sm text-white hover:from-blue-600 hover:to-purple-600 border-white/40 shadow-lg shadow-blue-300/40 hover:shadow-xl hover:shadow-blue-400/50"
-                    : name === "Pro"
-                    ? "bg-gradient-to-r from-purple-500/90 to-pink-500/90 backdrop-blur-sm text-white hover:from-purple-600 hover:to-pink-600 border-white/40 shadow-lg shadow-purple-300/40 hover:shadow-xl hover:shadow-purple-400/50"
-                    : "bg-white/70 backdrop-blur-sm text-gray-900 border-gray-300/60 hover:bg-white/90 hover:border-gray-400/60 shadow-md hover:shadow-lg"
-                }`}
-              >
-                <span className="relative z-10">{buttonText}</span>
-              </Button>
-            ) : (
-              <Button
-                className={`w-full py-4 sm:py-6 text-sm sm:text-base font-semibold relative overflow-hidden group transition-all duration-300 border ${
-                  highlighted
-                    ? "bg-gradient-to-r from-blue-500/90 to-purple-500/90 backdrop-blur-sm text-white hover:from-blue-600 hover:to-purple-600 border-white/40 shadow-lg shadow-blue-300/40 hover:shadow-xl hover:shadow-blue-400/50"
-                    : name === "Pro"
-                    ? "bg-gradient-to-r from-purple-500/90 to-pink-500/90 backdrop-blur-sm text-white hover:from-purple-600 hover:to-pink-600 border-white/40 shadow-lg shadow-purple-300/40 hover:shadow-xl hover:shadow-purple-400/50"
-                    : "bg-white/70 backdrop-blur-sm text-gray-900 border-gray-300/60 hover:bg-white/90 hover:border-gray-400/60 shadow-md hover:shadow-lg"
-                }`}
-              >
-                <span className="relative z-10">{buttonText}</span>
-              </Button>
-            )}
+            <Button
+              onClick={handleSubscribe}
+              className={`w-full py-4 sm:py-6 text-sm sm:text-base font-semibold relative overflow-hidden group transition-all duration-300 border ${
+                isFree
+                  ? "bg-white/70 backdrop-blur-sm text-gray-900 border-gray-300/60 hover:bg-white/90 hover:border-gray-400/60 shadow-md hover:shadow-lg"
+                  : highlighted
+                  ? "bg-blue-600 text-white hover:bg-blue-700 border-blue-700/60 shadow-md hover:shadow-lg"
+                  : name === "Pro"
+                  ? "bg-purple-600 text-white hover:bg-purple-700 border-purple-700/60 shadow-md hover:shadow-lg"
+                  : "bg-white text-gray-900 border-gray-300 hover:bg-gray-50 shadow-sm hover:shadow-md"
+              }`}
+            >
+              <span className="relative z-10">{buttonText}</span>
+            </Button>
           </motion.div>
         </CardFooter>
       </Card>

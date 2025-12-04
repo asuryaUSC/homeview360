@@ -225,7 +225,7 @@ export default function PricingPage() {
           <p className="text-xs sm:text-sm text-gray-500 mt-2">
             Need a custom enterprise plan?{" "}
             <a
-              href="mailto:sales@homeview360.com"
+              href="/contact"
               className="text-blue-600 hover:text-blue-700 font-medium underline"
             >
               Contact our sales team
