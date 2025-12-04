@@ -29,8 +29,7 @@
     },
     "by_type": {
       "decor": 12,
-      "lighting": 14,
-      "other": 3,
+      "lighting": 17,
       "seating": 11,
       "tables": 16
     },
@@ -2121,7 +2120,7 @@
       "sku": "CGT-W01",
       "name": "Walllight Model 01",
       "category": "Walllight",
-      "type": "furniture",
+      "type": "lighting",
       "description": "Measuring 51cm W \u00d7 62cm H \u00d7 27cm D, A quality walllight piece designed for modern living spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
       "price": 449,
       "dimensions": {
@@ -2158,7 +2157,7 @@
       "sku": "CGT-W10",
       "name": "Walllight Model 10",
       "category": "Walllight",
-      "type": "furniture",
+      "type": "lighting",
       "description": "Measuring 18cm W \u00d7 58cm H \u00d7 21cm D, A quality walllight piece designed for modern living spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
       "price": 299,
       "dimensions": {
@@ -2195,7 +2194,7 @@
       "sku": "CGT-W38",
       "name": "Walllight Model 38",
       "category": "Walllight",
-      "type": "furniture",
+      "type": "lighting",
       "description": "Measuring 17cm W \u00d7 17cm H \u00d7 19cm D, A quality walllight piece designed for modern living spaces. Features AR-ready 3D models for realistic visualization in your space before purchase.",
       "price": 349,
       "dimensions": {

@@ -5,7 +5,7 @@ import { CatalogItem } from "@/types/catalog";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Eye, TrendingUp } from "lucide-react";
+import { Eye, TrendingUp } from "lucide-react";
 import { useProductInteractionTracking } from "@/hooks/useTracking";
 import { getRecommendationReason } from "@/lib/recommendations";
 
@@ -60,20 +60,20 @@ export default function CatalogCard({ item, index = 0 }: CatalogCardProps) {
         onClick={() => trackProductClick(item)}
         className="block group"
       >
-        <div className="bg-white/40 backdrop-blur-md border border-white/50 rounded-xl overflow-hidden shadow-md shadow-gray-300/20 hover:shadow-lg hover:shadow-gray-400/25 hover:bg-white/50 transition-all duration-300 h-full flex flex-col">
+        <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
           {/* Thumbnail */}
-          <div className="relative w-full aspect-square bg-white/60 overflow-hidden">
+          <div className="relative w-full aspect-square bg-gray-100 overflow-hidden">
             {item.thumbnail ? (
               <Image
                 src={`/${item.thumbnail}`}
                 alt={item.name}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 33vw, 25vw"
               />
             ) : (
               // Placeholder for missing thumbnails
-              <div className="w-full h-full bg-gradient-to-br from-gray-100/80 to-gray-200/80 flex items-center justify-center">
+              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
                 <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-400">
                   {getInitials(item.name)}
                 </span>
@@ -88,15 +88,15 @@ export default function CatalogCard({ item, index = 0 }: CatalogCardProps) {
           </div>
 
           {/* Content */}
-          <div className="p-3 sm:p-4 flex-1 flex flex-col">
+          <div className="p-3 sm:p-3.5 flex-1 flex flex-col gap-2">
             {/* Category Badge */}
-            <div className="mb-2 flex items-center gap-2 flex-wrap">
-              <span className="inline-block bg-gray-900/5 backdrop-blur-sm text-gray-700 text-[10px] sm:text-xs px-2 py-1 rounded-md font-medium">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="inline-block bg-gray-100 text-gray-800 text-[10px] sm:text-xs px-2.5 py-1 rounded-full font-semibold">
                 {item.category}
               </span>
               {/* Recommendation badge */}
               {recommendationReason && (
-                <span className="inline-flex items-center gap-1 bg-green-500/10 backdrop-blur-sm text-green-700 text-[10px] px-2 py-1 rounded-md font-medium">
+                <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[10px] px-2.5 py-1 rounded-full font-semibold border border-emerald-100">
                   <TrendingUp className="w-2.5 h-2.5" />
                   For you
                 </span>
@@ -104,19 +104,23 @@ export default function CatalogCard({ item, index = 0 }: CatalogCardProps) {
             </div>
 
             {/* Product Name */}
-            <h3 className="text-sm sm:text-base font-semibold text-gray-900 line-clamp-2 mb-2">
+            <h3 className="text-sm sm:text-base font-semibold text-gray-900 truncate leading-tight h-[1.4rem] sm:h-[1.5rem]">
               {item.name}
             </h3>
 
-            {/* Price */}
-            <p className="text-lg sm:text-xl font-bold text-gray-900 mt-auto">
-              ${item.price}
-            </p>
+            {/* Quick detail */}
+            <div className="text-[11px] sm:text-xs text-gray-600">
+              {Math.round(item.dimensions.width * 100)}cm W × {Math.round(item.dimensions.depth * 100)}cm D × {Math.round(item.dimensions.height * 100)}cm H
+            </div>
 
-            {/* View in AR Link */}
-            <div className="mt-2 flex items-center text-xs sm:text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">
-              <span>View Details</span>
-              <ArrowRight className="ml-1 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-0.5 transition-transform" />
+            {/* Price */}
+            <div className="mt-auto flex items-center justify-between">
+              <p className="text-lg sm:text-xl font-bold text-gray-900">
+                ${item.price}
+              </p>
+              <span className="text-xs text-gray-500 font-medium">
+                AR ready
+              </span>
             </div>
           </div>
         </div>

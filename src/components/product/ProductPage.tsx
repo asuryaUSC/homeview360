@@ -3,7 +3,7 @@
 import React from "react";
 import { CatalogItem } from "@/types/catalog";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { Compass } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import ProductBreadcrumb from "./ProductBreadcrumb";
 import ProductImageGallery from "./ProductImageGallery";
@@ -23,6 +23,7 @@ interface ProductPageProps {
 
 export default function ProductPage({ product }: ProductPageProps) {
   const { isPWA } = usePWAMode();
+  const shellPadding = isPWA ? "py-4 sm:py-6" : "py-6 sm:py-10";
 
   // Track product view with time spent
   useProductViewTracking(product.id);
@@ -50,34 +51,36 @@ export default function ProductPage({ product }: ProductPageProps) {
     <div className="min-h-screen relative">
       {!isPWA && <Navbar />}
 
-      <main className={`container mx-auto px-3 sm:px-4 ${isPWA ? 'py-4 sm:py-6' : 'py-6 sm:py-8'}`}>
+      <main className={`container mx-auto px-3 sm:px-4 ${shellPadding}`}>
         {/* Breadcrumb */}
-        <ProductBreadcrumb product={product} />
+        <div className="mb-4 sm:mb-6">
+          <ProductBreadcrumb product={product} />
+        </div>
 
         {/* Product Content */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mt-6 sm:mt-8"
+          className="mt-2 sm:mt-4"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
-            {/* Product Image */}
-            <div className="order-1">
-              <ProductImageGallery product={product} />
-            </div>
-
-            {/* Product Details */}
-            <div className="order-2 lg:pt-8">
-              <ProductDetails product={product} />
-
-              {/* AR Button */}
-              <div className="mt-8 sm:mt-10">
-                <ARButton product={product} />
+          <div className="rounded-3xl border border-gray-200 bg-white/90 backdrop-blur-sm shadow-xl shadow-gray-200/50 p-4 sm:p-6 lg:p-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
+              {/* Product Image */}
+              <div className="order-1">
+                <ProductImageGallery product={product} />
               </div>
 
-              {/* Dimensions */}
-              <div className="mt-8 sm:mt-10">
+              {/* Product Details */}
+              <div className="order-2 lg:pt-4 xl:pt-6 space-y-8">
+                <ProductDetails product={product} />
+
+                {/* AR Button */}
+                <div className="pt-2">
+                  <ARButton product={product} />
+                </div>
+
+                {/* Dimensions */}
                 <ProductDimensions product={product} />
               </div>
             </div>
@@ -92,24 +95,36 @@ export default function ProductPage({ product }: ProductPageProps) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-12 sm:mt-16"
           >
-            <div className="flex items-center gap-3 mb-4 sm:mb-6">
-              <div className="p-2 bg-amber-500/10 rounded-lg">
-                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600" />
+            <div className="mb-5 sm:mb-8 flex flex-col gap-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-blue-100 to-cyan-50 border border-blue-200 text-xs font-semibold text-blue-700 w-fit shadow-sm">
+                <Compass className="w-4 h-4" />
+                Curated for you
               </div>
-              <div>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-                  You May Also Like
-                </h2>
-                <p className="text-xs sm:text-sm text-gray-600">
-                  Curated picks that pair well with this piece
-                </p>
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                    You May Also Like
+                  </h2>
+                  <p className="text-sm text-gray-600">
+                    Pieces that complement this product in style and scale
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
-              {similarItems.map((item, index) => (
-                <CatalogCard key={item.id} item={item} index={index} />
-              ))}
+            <div className="-mx-3 sm:-mx-4 lg:-mx-0">
+              <div className="overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                <div className="flex gap-3 sm:gap-4 lg:gap-5 xl:gap-6 px-3 sm:px-4 lg:px-0 snap-x snap-mandatory">
+                  {similarItems.map((item, index) => (
+                    <div
+                      key={item.id}
+                      className="snap-start min-w-[220px] sm:min-w-[240px] lg:min-w-[260px]"
+                    >
+                      <CatalogCard item={item} index={index} />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </motion.section>
         )}

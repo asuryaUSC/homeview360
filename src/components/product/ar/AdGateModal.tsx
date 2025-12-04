@@ -12,6 +12,13 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
+const MOCK_ADS = [
+  "/assets/ads/ad1.mp4",
+  "/assets/ads/ad2.mp4",
+  "/assets/ads/ad3.mp4",
+  "/assets/ads/ad4.mp4",
+];
+
 interface AdGateModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -23,11 +30,34 @@ export default function AdGateModal({
   onClose,
   onContinue,
 }: AdGateModalProps) {
+  const adContainerId = "container-a2ac111dd358290b1b08c1f1b3e5cc19";
   const scriptLoadedRef = useRef(false);
   const [adLoaded, setAdLoaded] = useState(false);
+  const [showFallback, setShowFallback] = useState(false);
+  const [fallbackAd, setFallbackAd] = useState<string | null>(null);
+  const [canSkip, setCanSkip] = useState(true);
+
+  const getFallbackLink = (src: string) =>
+    src.includes("ad4")
+      ? "https://www.wayfair.com/"
+      : "https://www.ikea.com/us/en/";
+
+  const handleFallbackClick = () => {
+    if (!fallbackAd) return;
+    const href = getFallbackLink(fallbackAd);
+    window.open(href, "_blank", "noopener,noreferrer");
+  };
 
   useEffect(() => {
+    let fallbackTimer: ReturnType<typeof setTimeout> | undefined;
+    let verifyTimer: ReturnType<typeof setTimeout> | undefined;
+
     if (isOpen && !scriptLoadedRef.current) {
+      setAdLoaded(false);
+      setShowFallback(false);
+      setFallbackAd(null);
+      setCanSkip(true);
+
       // Create and inject Adsterra script
       const script = document.createElement("script");
       script.async = true;
@@ -37,6 +67,18 @@ export default function AdGateModal({
       // Add load event listener
       script.onload = () => {
         setAdLoaded(true);
+
+        // Give the ad a moment to render into the container; if empty, use fallback
+        verifyTimer = setTimeout(() => {
+          const container = document.getElementById(adContainerId);
+          const hasAd = !!container && container.childElementCount > 0;
+          if (!hasAd) {
+            const randomAd = MOCK_ADS[Math.floor(Math.random() * MOCK_ADS.length)];
+            setFallbackAd(randomAd);
+            setShowFallback(true);
+            setCanSkip(false);
+          }
+        }, 1000);
       };
 
       // Append to document body (Adsterra scripts work better in body)
@@ -44,13 +86,25 @@ export default function AdGateModal({
       scriptLoadedRef.current = true;
 
       // Check if ad loaded after a timeout
-      const timeout = setTimeout(() => {
-        setAdLoaded(true);
+      fallbackTimer = setTimeout(() => {
+        const container = document.getElementById(adContainerId);
+        const hasAd = !!container && container.childElementCount > 0;
+
+        if (hasAd) {
+          setAdLoaded(true);
+        } else {
+          const randomAd = MOCK_ADS[Math.floor(Math.random() * MOCK_ADS.length)];
+          setFallbackAd(randomAd);
+          setShowFallback(true);
+          setCanSkip(false);
+          setAdLoaded(true);
+        }
       }, 3000);
 
       // Cleanup function
       return () => {
-        clearTimeout(timeout);
+        if (fallbackTimer) clearTimeout(fallbackTimer);
+        if (verifyTimer) clearTimeout(verifyTimer);
         if (script.parentNode) {
           script.parentNode.removeChild(script);
         }
@@ -59,7 +113,16 @@ export default function AdGateModal({
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!showFallback) return;
+
+    setCanSkip(false);
+    const timer = setTimeout(() => setCanSkip(true), 5000);
+    return () => clearTimeout(timer);
+  }, [showFallback]);
+
   const handleContinue = () => {
+    if (showFallback && !canSkip) return;
     onContinue();
     onClose();
   };
@@ -67,7 +130,7 @@ export default function AdGateModal({
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
-        className="max-w-[95vw] sm:max-w-xl md:max-w-2xl lg:max-w-3xl w-full bg-white border-gray-200 shadow-2xl p-6 sm:p-8"
+        className="max-w-[95vw] sm:max-w-xl md:max-w-2xl lg:max-w-3xl w-full bg-white/95 backdrop-blur-xl border border-gray-200 shadow-2xl shadow-blue-100/60 p-6 sm:p-8 rounded-3xl"
         showCloseButton={false}
       >
         {/* Custom close button */}
@@ -88,25 +151,56 @@ export default function AdGateModal({
         >
           {/* Header */}
           <DialogHeader className="space-y-2 sm:space-y-3 pt-0">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200/60 text-xs font-semibold text-blue-700 w-fit shadow-sm">
+              Sponsored Message
+            </div>
             <DialogTitle className="text-xl sm:text-2xl font-semibold text-gray-900 leading-tight">
-              Just a moment before your AR experience
+              A quick message before your AR preview
             </DialogTitle>
             <DialogDescription className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              Support HomeView 360 by viewing this brief message. Premium users enjoy ad-free AR access.
+              We’ll take you to your AR experience right after this short spot. Premium members skip ads.
             </DialogDescription>
           </DialogHeader>
 
           {/* Ad Container */}
           <div className="w-full space-y-3">
-            <div className="w-full relative overflow-hidden rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center min-h-[100px] sm:min-h-[120px] md:min-h-[140px]">
+            <div className="w-full relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 via-white to-gray-100 border border-gray-200 shadow-inner flex items-center justify-center min-h-[100px] sm:min-h-[140px] md:min-h-[160px]">
               {/* Adsterra ad container - place directly without wrapper */}
-              <div
-                id="container-a2ac111dd358290b1b08c1f1b3e5cc19"
-                className="w-full"
-              />
-              {/* Loading placeholder - hide when ad loads */}
+              {!showFallback && (
+                <div id={adContainerId} className="w-full" />
+              )}
+
+              {showFallback && fallbackAd && (
+                <div
+                  className="relative w-full h-full cursor-pointer group"
+                  onClick={handleFallbackClick}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <video
+                    key={fallbackAd}
+                    src={fallbackAd}
+                    className="w-full h-full max-h-[320px] rounded-2xl object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                  <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                    <span className="px-3 py-1.5 rounded-full bg-white/90 text-xs font-semibold text-gray-900 shadow">
+                      Tap to shop
+                    </span>
+                    <span className="px-3 py-1.5 rounded-full bg-gray-900/80 text-xs font-semibold text-white shadow">
+                      {fallbackAd.includes("ad4") ? "Wayfair" : "IKEA"}
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* Loading placeholder - hide when ad or fallback loads */}
               {!adLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
                   <div className="text-gray-400 text-sm animate-pulse">
                     Loading advertisement...
                   </div>
@@ -125,9 +219,10 @@ export default function AdGateModal({
             <Button
               onClick={handleContinue}
               size="lg"
+              disabled={showFallback && !canSkip}
               className="w-full bg-black hover:bg-gray-800 text-white font-medium rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] py-5 sm:py-6 text-base"
             >
-              Continue to AR Experience
+              {showFallback && !canSkip ? "Please wait..." : "Continue to AR Experience"}
             </Button>
 
             <p className="text-xs sm:text-sm text-center text-gray-500">

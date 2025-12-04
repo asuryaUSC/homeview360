@@ -27,10 +27,10 @@ export default function ProductImageGallery({ product }: ProductImageGalleryProp
       initial={{ scale: 0.95, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="sticky top-4"
+      className="sticky top-6 space-y-4"
     >
       {/* Main Product Image */}
-      <div className="relative aspect-square w-full bg-gray-50 rounded-2xl overflow-hidden shadow-sm border border-gray-200">
+      <div className="relative aspect-square w-full bg-gradient-to-br from-gray-100 via-white to-gray-200 rounded-3xl overflow-hidden shadow-xl shadow-gray-200/60 border border-gray-200">
         {product.thumbnail ? (
           <>
             <Image
@@ -85,27 +85,32 @@ export default function ProductImageGallery({ product }: ProductImageGalleryProp
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="mt-4 p-4 bg-gray-50 rounded-xl"
+        className="p-4 sm:p-5 bg-white/80 border border-gray-200 rounded-2xl shadow-sm backdrop-blur-sm"
       >
-        <h4 className="text-sm font-medium text-gray-900 mb-2">3D Model Info</h4>
-        <div className="grid grid-cols-2 gap-3 text-xs text-gray-600">
+        <div className="flex items-center justify-between mb-3">
+          <h4 className="text-sm font-semibold text-gray-900">3D Model Info</h4>
+          <Badge variant="secondary" className="text-[11px] px-2 py-1 bg-gray-100 text-gray-700">
+            GLB + USDZ
+          </Badge>
+        </div>
+        <div className="grid grid-cols-2 gap-3 text-xs sm:text-sm text-gray-700">
           <div>
-            <span className="font-medium">Vertices:</span>
+            <span className="font-medium text-gray-900">Vertices</span>
             <br />
             {product.models.vertices.toLocaleString()}
           </div>
           <div>
-            <span className="font-medium">Faces:</span>
+            <span className="font-medium text-gray-900">Faces</span>
             <br />
             {product.models.faces.toLocaleString()}
           </div>
           <div>
-            <span className="font-medium">GLB Size:</span>
+            <span className="font-medium text-gray-900">GLB Size</span>
             <br />
             {product.models.glb_size_mb} MB
           </div>
           <div>
-            <span className="font-medium">USDZ Size:</span>
+            <span className="font-medium text-gray-900">USDZ Size</span>
             <br />
             {product.models.usdz_size_mb} MB
           </div>

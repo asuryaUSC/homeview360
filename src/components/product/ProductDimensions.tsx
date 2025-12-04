@@ -42,7 +42,7 @@ export default function ProductDimensions({ product }: ProductDimensionsProps) {
       initial={{ y: 20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, delay: 0.5 }}
-      className="space-y-4"
+      className="space-y-4 rounded-2xl border border-gray-200 bg-white/85 backdrop-blur-sm p-4 shadow-sm"
     >
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -81,7 +81,7 @@ export default function ProductDimensions({ product }: ProductDimensionsProps) {
       </div>
 
       {/* Dimensions Table */}
-      <div className="bg-gray-50 rounded-xl p-4">
+      <div className="bg-gradient-to-br from-gray-50 via-white to-gray-100 rounded-xl p-4 border border-gray-100">
         <div className="grid grid-cols-3 gap-4">
           <div className="text-center">
             <div className="text-2xl font-bold text-gray-900 mb-1">
@@ -107,34 +107,31 @@ export default function ProductDimensions({ product }: ProductDimensionsProps) {
 
         {/* Visual Representation */}
         <div className="mt-6 flex justify-center">
-          <div className="relative">
-            {/* 3D Box Representation */}
-            <div className="relative w-24 h-16">
-              {/* Front face */}
-              <div
-                className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 border border-gray-400 rounded-sm"
-                style={{
-                  transform: "perspective(100px) rotateX(5deg) rotateY(-5deg)",
-                  transformOrigin: "center center"
-                }}
-              />
-              {/* Top face */}
-              <div
-                className="absolute w-24 h-4 bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-400 rounded-sm"
-                style={{
-                  transform: "perspective(100px) rotateX(60deg) translateY(-8px)",
-                  transformOrigin: "center bottom"
-                }}
-              />
-              {/* Right face */}
-              <div
-                className="absolute w-4 h-16 bg-gradient-to-br from-gray-300 to-gray-400 border border-gray-400 rounded-sm"
-                style={{
-                  transform: "perspective(100px) rotateY(60deg) translateX(20px)",
-                  transformOrigin: "left center"
-                }}
-              />
-            </div>
+          <div className="relative w-28 h-20">
+            {/* Front face */}
+            <div
+              className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300 border border-slate-400 rounded-md shadow-inner"
+              style={{
+                transform: "perspective(120px) rotateX(6deg) rotateY(-8deg)",
+                transformOrigin: "center center"
+              }}
+            />
+            {/* Top face */}
+            <div
+              className="absolute w-28 h-5 bg-gradient-to-br from-slate-100 to-slate-200 border border-slate-300 rounded-md"
+              style={{
+                transform: "perspective(120px) rotateX(65deg) translateY(-10px)",
+                transformOrigin: "center bottom"
+              }}
+            />
+            {/* Right face */}
+            <div
+              className="absolute w-5 h-20 bg-gradient-to-br from-slate-300 to-slate-400 border border-slate-400 rounded-md"
+              style={{
+                transform: "perspective(120px) rotateY(65deg) translateX(24px)",
+                transformOrigin: "left center"
+              }}
+            />
           </div>
         </div>
 
