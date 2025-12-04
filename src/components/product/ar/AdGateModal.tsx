@@ -36,6 +36,8 @@ export default function AdGateModal({
   const [showFallback, setShowFallback] = useState(false);
   const [fallbackAd, setFallbackAd] = useState<string | null>(null);
   const [canSkip, setCanSkip] = useState(true);
+  const [forceControls, setForceControls] = useState(false);
+  const fallbackVideoRef = useRef<HTMLVideoElement | null>(null);
 
   const selectFallbackAd = () => {
     const pick = MOCK_ADS[Math.floor(Math.random() * MOCK_ADS.length)];
@@ -122,9 +124,20 @@ export default function AdGateModal({
     if (!showFallback) return;
 
     setCanSkip(false);
+    setForceControls(false);
     const timer = setTimeout(() => setCanSkip(true), 5000);
     return () => clearTimeout(timer);
   }, [showFallback]);
+
+  useEffect(() => {
+    if (showFallback && fallbackAd && fallbackVideoRef.current) {
+      fallbackVideoRef.current.load();
+      const playPromise = fallbackVideoRef.current.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => setForceControls(true));
+      }
+    }
+  }, [showFallback, fallbackAd]);
 
   const handleContinue = () => {
     if (showFallback && !canSkip) return;
@@ -183,6 +196,7 @@ export default function AdGateModal({
                   tabIndex={0}
                 >
                   <video
+                    ref={fallbackVideoRef}
                     key={fallbackAd}
                     src={fallbackAd}
                     className="w-full h-full max-h-[320px] rounded-2xl object-cover"
@@ -192,6 +206,8 @@ export default function AdGateModal({
                     playsInline
                     preload="auto"
                     onError={() => setFallbackAd(selectFallbackAd())}
+                    controls={forceControls}
+                    controlsList="nodownload"
                   />
                   <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
