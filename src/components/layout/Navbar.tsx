@@ -52,7 +52,7 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex h-16 sm:h-20 items-center justify-between">
+        <div className="grid grid-cols-[auto_1fr_auto] items-center h-16 sm:h-20 gap-3">
 
           {/* Left Section - Logo */}
           <motion.div
@@ -76,7 +76,7 @@ export default function Navbar() {
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="hidden md:flex items-center space-x-10"
+            className="hidden md:flex items-center justify-center space-x-10"
           >
             {navLinks.map((link) => (
               <Link
@@ -98,7 +98,7 @@ export default function Navbar() {
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex items-center gap-2 sm:gap-3"
+            className="flex items-center justify-end gap-2 sm:gap-3"
           >
             {/* Mobile Menu Button */}
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>

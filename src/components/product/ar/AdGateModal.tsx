@@ -37,6 +37,11 @@ export default function AdGateModal({
   const [fallbackAd, setFallbackAd] = useState<string | null>(null);
   const [canSkip, setCanSkip] = useState(true);
 
+  const selectFallbackAd = () => {
+    const pick = MOCK_ADS[Math.floor(Math.random() * MOCK_ADS.length)];
+    return typeof window !== "undefined" ? new URL(pick, window.location.origin).toString() : pick;
+  };
+
   const getFallbackLink = (src: string) =>
     src.includes("ad4")
       ? "https://www.wayfair.com/"
@@ -73,7 +78,7 @@ export default function AdGateModal({
           const container = document.getElementById(adContainerId);
           const hasAd = !!container && container.childElementCount > 0;
           if (!hasAd) {
-            const randomAd = MOCK_ADS[Math.floor(Math.random() * MOCK_ADS.length)];
+            const randomAd = selectFallbackAd();
             setFallbackAd(randomAd);
             setShowFallback(true);
             setCanSkip(false);
@@ -93,7 +98,7 @@ export default function AdGateModal({
         if (hasAd) {
           setAdLoaded(true);
         } else {
-          const randomAd = MOCK_ADS[Math.floor(Math.random() * MOCK_ADS.length)];
+          const randomAd = selectFallbackAd();
           setFallbackAd(randomAd);
           setShowFallback(true);
           setCanSkip(false);
@@ -185,6 +190,8 @@ export default function AdGateModal({
                     muted
                     loop
                     playsInline
+                    preload="auto"
+                    onError={() => setFallbackAd(selectFallbackAd())}
                   />
                   <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
